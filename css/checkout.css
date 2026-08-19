@@ -148,8 +148,8 @@ h2{margin:22px 0 12px;font-size:26px}.goldline{width:62px;height:4px;background:
 }
 
 .brandWrap{display:flex;align-items:center;gap:10px}.brandLogo{width:52px;height:52px;object-fit:contain;border-radius:50%;background:#090909}.brand small{display:block;font-size:8px;letter-spacing:1.8px;color:var(--gold2);margin-top:2px}
-.socialTop{display:flex;gap:7px}.socialBtn{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid #333;cursor:pointer;text-decoration:none}.socialBtn svg{width:23px;height:23px}.waIcon{background:#25D366;color:#fff;border-color:#25D366}.igIcon{background:linear-gradient(135deg,#833AB4,#C13584,#E1306C,#F77737,#FCAF45);color:#fff;border:0}.mapsIcon{background:#fff}
-.modifierSheet{position:relative}.xclose{position:absolute;right:16px;top:14px;border:0;background:#eee;width:34px;height:34px;border-radius:50%;font-size:22px}.modHint{color:#666;margin-top:-8px}.sauceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:15px 0}.sauceOpt{border:1px solid #ddd;border-radius:12px;padding:11px;display:flex;align-items:center;gap:8px;font-weight:750}.sauceOpt:has(input:checked){border-color:#C9A227;background:#fbf6e5}.medallonRow{align-items:center;gap:8px;border:1px solid #C9A227;background:#0a0a0a;color:#fff;border-radius:13px;padding:13px;margin:10px 0}.medallonRow span{flex:1}.medallonRow b{color:#F0D06A}
+.socialTop{display:flex;gap:7px}.socialBtn{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid #333;cursor:pointer;text-decoration:none}.socialBtn svg{width:23px;height:23px}.waIcon{background:#25D366;color:#fff;border-color:#25D366}.igIcon{background:linear-gradient(135deg,#833AB4,#C13584,#E1306C,#F77737,#FCAF45);color:#fff;border:0}
+.modifierSheet{position:relative}.xclose{position:absolute;right:16px;top:14px;border:0;background:#eee;width:34px;height:34px;border-radius:50%;font-size:22px}.modHint{color:#666;margin-top:-8px}.sauceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:15px 0}.sauceOpt{border:1px solid #ddd;border-radius:12px;padding:11px;display:flex;align-items:center;gap:8px;font-weight:750}.sauceOpt:has(input:checked){border-color:#C9A227;background:#fbf6e5}
 @media(max-width:620px){.brandLogo{width:42px;height:42px}.brand small{display:none}.socialBtn{width:36px;height:36px}.socialBtn svg{width:20px;height:20px}.clock{margin-left:auto}.sauceGrid{grid-template-columns:1fr 1fr}}
 
 .menuSection{scroll-margin-top:155px;padding:10px 0 30px}.menuSection+.menuSection{border-top:1px solid #d8cfbb;padding-top:28px}.nav{position:sticky;top:76px;z-index:15}.nav button{transition:.16s}.qtyCtl{display:flex;align-items:center;gap:7px}.qtyCtl button{width:31px;height:31px;border-radius:50%;border:1px solid #cfc7b7;background:#fff;font-size:19px;font-weight:900}.ci small{display:block;color:#666;margin-top:3px}.ci{flex-wrap:wrap}.orderSheet{max-height:92vh}.cartTitleRow{display:flex;align-items:center;justify-content:space-between}.orderForm{display:grid;gap:11px;margin-top:15px;border-top:1px solid #ddd;padding-top:15px}.formLabel{font-size:10px;font-weight:950;letter-spacing:.08em;color:#645f54}.deliveryToggle,.form2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.deliveryToggle button{border:1px solid #d8d0c0;background:#fff;border-radius:12px;padding:11px;font-weight:900}.deliveryToggle button.active{background:#080808;color:#F0D06A;border-color:#080808}.orderForm label{display:grid;gap:5px}.orderForm label>span{font-size:10px;font-weight:900;color:#645f54}.orderForm input,.orderForm select,.orderForm textarea{width:100%;border:1px solid #d8d0c0;border-radius:11px;padding:11px;background:#fff}.orderForm textarea{min-height:70px;resize:vertical}.deliveryFields{display:grid;gap:10px;border:1px solid #ddd2bb;background:#faf8f2;border-radius:15px;padding:12px}.zoneGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.zoneBtn{border:1px solid #d8d0c0;background:#fff;border-radius:12px;padding:10px;text-align:left}.zoneBtn b,.zoneBtn small{display:block}.zoneBtn small{margin-top:3px;color:#666}.zoneBtn.active{background:#080808;color:#fff;border-color:#C9A227}.zoneBtn.active b{color:#F0D06A}.zoneBtn.active small{color:#ddd}.gpsBtn{border:0;border-radius:11px;padding:11px;background:#eaf8ee;color:#146c2e;font-weight:900}.gpsStatus{font-size:11px;color:#666}.shippingLine,.orderTotal{display:flex;justify-content:space-between;align-items:center;border-radius:11px;padding:10px 12px;background:#fff4c9;border:1px solid #dfc565}.orderTotal.grand{background:#080808;color:#fff;border-color:#C9A227}.orderTotal.grand b{color:#F0D06A;font-size:21px}.formError{display:none;padding:9px 10px;border-radius:10px;background:#fff0f0;color:#a51616;border:1px solid #efb5b5;font-size:12px}.formError.show{display:block}.hidden{display:none!important}
@@ -458,24 +458,6 @@ select:focus-visible,textarea:focus-visible{
   height:20px!important;
   margin:0!important;
 }
-#modifierModal .medallonRow{
-  display:flex!important;
-  width:100%!important;
-  min-width:0!important;
-  flex-wrap:wrap!important;
-  box-sizing:border-box!important;
-}
-#modifierModal .medallonRow span{
-  min-width:0!important;
-  flex:1 1 180px!important;
-  white-space:normal!important;
-  overflow-wrap:anywhere!important;
-}
-#modifierModal .medallonRow b{
-  flex:0 1 auto!important;
-  white-space:normal!important;
-  text-align:right!important;
-}
 #modifierModal .checkout{
   width:100%!important;
   min-height:50px!important;
@@ -500,14 +482,6 @@ select:focus-visible,textarea:focus-visible{
   }
   #modifierModal .sauceOpt{
     min-height:46px!important;
-  }
-  #modifierModal .medallonRow{
-    gap:8px!important;
-  }
-  #modifierModal .medallonRow b{
-    width:100%!important;
-    text-align:left!important;
-    padding-left:28px!important;
   }
 }
 @media(min-width:768px){
@@ -734,19 +708,6 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
   accent-color:#b38b14!important;
   width:22px!important;
   height:22px!important;
-}
-#modifierModal .medallonRow{
-  background:#fff!important;
-  color:#111!important;
-  border:1.5px solid #b9b9b9!important;
-  border-radius:14px!important;
-  padding:12px 14px!important;
-}
-#modifierModal .medallonRow span,
-#modifierModal .medallonRow b{
-  color:#111!important;
-  opacity:1!important;
-  font-weight:700!important;
 }
 #modifierModal .checkout{
   background:#d4af37!important;
@@ -1271,3 +1232,5 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
   #modal #cartItems .ci > span{grid-area:price!important;justify-self:end!important}
   #modal #cartItems .remove{grid-area:remove!important;justify-self:end!important}
 }
+
+.mapIcon{background:#F0C400;color:#111;border-color:#F0C400;font-size:21px;line-height:1}
