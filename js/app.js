@@ -9,13 +9,18 @@ let deliveryMode="delivery",shippingCost=1500,shippingZone="Dentro de las 4 aven
 let pending=null;
 const money=n=>"$"+Number(n||0).toLocaleString("es-AR");
 function nav(){
- document.getElementById("nav").innerHTML=CATS.map(c=>`<button data-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
+ const el=document.getElementById("nav");
+ if(!el)return;
+ el.innerHTML=CATS.map(c=>`<button type="button" data-cat="${c}" class="${c===active?'active':''}" onclick="selectCategory('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
 }
 function slug(x){return x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9]+/g,"-").toLowerCase();}
-function scrollToCat(cat){
- const el=document.getElementById("sec-"+slug(cat));
- if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+function selectCategory(cat){
+ active=cat;
+ const search=document.getElementById("search"); if(search)search.value="";
+ nav();render();
+ const content=document.getElementById("content"); if(content)content.scrollIntoView({behavior:"smooth",block:"start"});
 }
+function scrollToCat(cat){selectCategory(cat)}
 
 function halfPrice(price){return Math.round(price/2)+(price>=19000?2000:1000)}
 function addHalfPizza(name,price){
@@ -33,7 +38,7 @@ function saveCart(){try{localStorage.setItem("consumaCart",JSON.stringify(cart))
 function openModifier(name,price,cat){
  pending={name,price,cat};
  document.getElementById("modTitle").textContent=name;
- document.getElementById("sauceGrid").innerHTML=SAUCES.map(x=>`<label class="sauceOpt"><input type="checkbox" value="${x}"><span>${x}</span></label>`).join("");
+ document.getElementById("sauceGrid").innerHTML=SAUCES.map(x=>`<label class="sauceOpt"><input type="checkbox" value="${x}"><span>${x}</span></label>`).join("")+`<label class="sauceOpt extraMed"><input type="checkbox" id="extraMedallon" value="Medallón extra +$5.000"><span>Medallón extra <b>+$5.000</b></span></label>`;
  document.querySelectorAll("#sauceGrid input").forEach(el=>el.addEventListener("change",function(){
    const all=[...document.querySelectorAll("#sauceGrid input")];
    if(this.value==="Sin aderezo" && this.checked) all.forEach(x=>{if(x!==this)x.checked=false});
@@ -44,20 +49,22 @@ function openModifier(name,price,cat){
 function closeModifier(){document.getElementById("modifierModal").classList.remove("open");pending=null}
 function confirmModifier(){
  if(!pending)return;
- let mods=[...document.querySelectorAll("#sauceGrid input:checked")].map(x=>x.value);
- let price=pending.price;
-
+ const checked=[...document.querySelectorAll("#sauceGrid input:checked")];
+ const extra=checked.some(x=>x.id==="extraMedallon");
+ let mods=checked.filter(x=>x.id!=="extraMedallon").map(x=>x.value);
+ if(extra)mods.push("Medallón extra +$5.000");
+ let price=pending.price+(extra?5000:0);
  cart.push({name:pending.name,price,mods,qty:1});saveCart();closeModifier();
 }
 function count(){document.getElementById("count").textContent=cart.length}
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim();
  let blocks=[];
- const pp=PROMOS.filter(x=>x.name.toLowerCase().includes(q));
+ const pp=active==="Promos"?PROMOS.filter(x=>x.name.toLowerCase().includes(q)):[];
  if(pp.length){
    blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promos 1 a 8</h2><div class="goldline"></div><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}" style="background-image:url('${x.img}')"></div><div class="pcontent"><span class="pill">Promo ${x.n}</span><h3>${x.name}</h3><div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
  }
- for(const cat of CATS.filter(c=>c!=="Promos")){
+ for(const cat of CATS.filter(c=>c!=="Promos" && (active===c || (q && active==="Promos")))){
    let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
