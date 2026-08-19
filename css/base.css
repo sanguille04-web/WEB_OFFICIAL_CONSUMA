@@ -1,0 +1,20 @@
+
+/* Media pizza: botones oro, redondeados y alto contraste */
+.halfBtn,.halfPizzaBtn,[data-half],button[onclick*="half" i],button[onclick*="mitad" i]{
+  background:linear-gradient(145deg,#F0D06A,#C9A227)!important;
+  color:#080808!important;
+  border:2px solid #F6DF8A!important;
+  border-radius:999px!important;
+  font-weight:950!important;
+  text-shadow:none!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.28)!important;
+}
+.halfBtn strong,.halfPizzaBtn strong,[data-half] strong,
+button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
+  color:#080808!important;
+  font-weight:950!important;
+}
+.halfBtn:active,.halfPizzaBtn:active,[data-half]:active,
+button[onclick*="half" i]:active,button[onclick*="mitad" i]:active{
+  transform:scale(.98)!important;
+}
