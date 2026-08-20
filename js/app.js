@@ -56,8 +56,11 @@ function openModifier(name,price,cat){
    else if(this.checked&&this.id!=="extraMedallon"){const none=all.find(x=>x.value==="Sin aderezo");if(none)none.checked=false;}
  }));
  modal.classList.add("open");
+ modal.setAttribute("aria-hidden","false");
+ document.body.classList.add("modal-open");
 }
-function closeModifier(){const modal=document.getElementById("modifierModal");if(modal)modal.classList.remove("open");pending=null}
+
+function closeModifier(){const modal=document.getElementById("modifierModal");if(modal){modal.classList.remove("open");modal.setAttribute("aria-hidden","true")}document.body.classList.remove("modal-open");pending=null}
 function confirmModifier(){
  if(!pending)return;
  const grid=document.getElementById("sauceGrid");
@@ -70,20 +73,44 @@ function confirmModifier(){
 }
 function count(){document.getElementById("count").textContent=cart.length}
 function render(){
- const q=document.getElementById("search").value.toLowerCase().trim();
+ const search=document.getElementById("search");
+ const q=(search?search.value:"").toLowerCase().trim();
  let blocks=[];
  const pp=active==="Promos"?PROMOS.filter(x=>x.name.toLowerCase().includes(q)):[];
  if(pp.length){
-   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promos 1 a 8</h2><div class="goldline"></div><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}" style="background-image:url('${x.img}')"></div><div class="pcontent"><span class="pill">Promo ${x.n}</span><h3>${x.name}</h3><div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promos 1 a 8</h2><div class="goldline"></div><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}" style="background-image:url('${x.img}')"></div><div class="pcontent"><span class="pill">Promo ${x.n}</span><h3>${x.name}</h3><div class="row"><span class="price">${money(x.price)}</span><button type="button" class="add js-add" data-kind="promo" data-id="${x.id}" aria-label="Agregar ${x.name} al pedido">+</button></div></div></article>`).join("")}</div></section>`);
  }
  for(const cat of CATS.filter(c=>c!=="Promos" && (active===c || (q && active==="Promos")))){
-   let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
+   let a=PRODUCTS.map((x,i)=>({...x,_idx:i})).filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
-   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">PRÓXIMAMENTE</span>`}</div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button type="button" class="halfBtn js-half" data-index="${x._idx}">½ · ${money(halfPrice(x.price))}</button>`:""}<button type="button" class="add js-add" data-kind="product" data-index="${x._idx}" aria-label="Agregar ${x.name} al pedido">+</button>`:`<span class="soon">PRÓXIMAMENTE</span>`}</div></article>`).join("")}</div></section>`);
  }
- document.getElementById("content").innerHTML=blocks.join("");
+ const content=document.getElementById("content");
+ if(content)content.innerHTML=blocks.join("");
 }
+
+// Un único manejador delegado: evita que los botones + dependan de onclick inline.
+document.addEventListener("click",function(e){
+ const addBtn=e.target.closest(".js-add");
+ if(addBtn){
+   e.preventDefault();e.stopPropagation();
+   if(addBtn.dataset.kind==="promo"){
+     const x=PROMOS.find(p=>p.id===addBtn.dataset.id);
+     if(x)add(x.name,x.price,"Promos");
+   }else{
+     const x=PRODUCTS[Number(addBtn.dataset.index)];
+     if(x)add(x.name,x.price,x.cat);
+   }
+   return;
+ }
+ const halfBtn=e.target.closest(".js-half");
+ if(halfBtn){
+   e.preventDefault();e.stopPropagation();
+   const x=PRODUCTS[Number(halfBtn.dataset.index)];
+   if(x)addHalfPizza(x.name,x.price);
+ }
+});
 function openCart(){document.getElementById("modal").classList.add("open");renderCart()}
 function closeCart(){document.getElementById("modal").classList.remove("open")}
 function changeQty(i,delta){
