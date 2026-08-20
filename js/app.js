@@ -16,11 +16,43 @@ function nav(){
 function slug(x){return x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9]+/g,"-").toLowerCase();}
 function selectCategory(cat){
  active=cat;
- const search=document.getElementById("search"); if(search)search.value="";
- nav();render();
- const content=document.getElementById("content"); if(content)content.scrollIntoView({behavior:"smooth",block:"start"});
+ nav();
+ updateQuickNav();
+ const target=document.getElementById("sec-"+slug(cat));
+ if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function scrollToCat(cat){selectCategory(cat)}
+
+function ensureQuickNav(){
+ if(document.getElementById("premiumQuick"))return;
+ const main=document.querySelector("main");
+ if(!main)return;
+ const quick=document.createElement("div");
+ quick.id="premiumQuick";
+ quick.className="premiumQuick";
+ quick.setAttribute("aria-label","Navegación rápida de la carta");
+ quick.innerHTML=CATS.map(c=>`<button type="button" data-quick-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
+ main.parentNode.insertBefore(quick,main);
+ const top=document.createElement("button");
+ top.type="button"; top.id="premiumTopBtn"; top.className="premiumTopBtn"; top.textContent="↑"; top.setAttribute("aria-label","Volver arriba");
+ top.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+ document.body.appendChild(top);
+ window.addEventListener("scroll",()=>top.classList.toggle("show",window.scrollY>700),{passive:true});
+ updateQuickNav();
+}
+function updateQuickNav(){
+ document.querySelectorAll("[data-quick-cat]").forEach(b=>b.classList.toggle("active",b.dataset.quickCat===active));
+ document.querySelectorAll("#nav [data-cat]").forEach(b=>b.classList.toggle("active",b.dataset.cat===active));
+}
+function syncActiveSection(){
+ const sections=CATS.map(c=>({cat:c,el:document.getElementById("sec-"+slug(c))})).filter(x=>x.el);
+ if(!sections.length)return;
+ let current=sections[0].cat;
+ const marker=Math.min(220,window.innerHeight*.28);
+ for(const x of sections){if(x.el.getBoundingClientRect().top<=marker)current=x.cat;else break;}
+ if(current!==active){active=current;updateQuickNav();}
+}
+window.addEventListener("scroll",syncActiveSection,{passive:true});
 
 function halfPrice(price){return Math.round(price/2)+(price>=19000?2000:1000)}
 function addHalfPizza(name,price){
@@ -76,11 +108,11 @@ function render(){
  const search=document.getElementById("search");
  const q=(search?search.value:"").toLowerCase().trim();
  let blocks=[];
- const pp=active==="Promos"?PROMOS.filter(x=>x.name.toLowerCase().includes(q)):[];
+ const pp=PROMOS.filter(x=>x.name.toLowerCase().includes(q));
  if(pp.length){
    blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promos 1 a 8</h2><div class="goldline"></div><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}" style="background-image:url('${x.img}')"></div><div class="pcontent"><span class="pill">Promo ${x.n}</span><h3>${x.name}</h3><div class="row"><span class="price">${money(x.price)}</span><button type="button" class="add js-add" data-kind="promo" data-id="${x.id}" aria-label="Agregar ${x.name} al pedido">+</button></div></div></article>`).join("")}</div></section>`);
  }
- for(const cat of CATS.filter(c=>c!=="Promos" && (active===c || (q && active==="Promos")))){
+ for(const cat of CATS.filter(c=>c!=="Promos")){
    let a=PRODUCTS.map((x,i)=>({...x,_idx:i})).filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
@@ -88,7 +120,9 @@ function render(){
  }
  const content=document.getElementById("content");
  if(content)content.innerHTML=blocks.join("");
+ requestAnimationFrame(syncActiveSection);
 }
+
 
 // Un único manejador delegado: evita que los botones + dependan de onclick inline.
 document.addEventListener("click",function(e){
@@ -192,4 +226,4 @@ function tick(){
  statusEl.dataset.state=isOpen?"open":"closed";
 }
 cart=cart.map(x=>({...x,qty:x.qty||1,mods:x.mods||[]}));
-nav();render();count();tick();setInterval(tick,1000);
+nav();render();ensureQuickNav();count();tick();setInterval(tick,1000);
