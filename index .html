@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CONSUMA · Cocina</title>
+<meta name="theme-color" content="#080808">
+<meta name="description" content="CONSUMA · Cocina — pizzas, hamburguesas, lomos, empanadas, focaccias y pedidos online en San Luis.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+
+
+
+
+
+
+\n\n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/checkout.css">
+<link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+<header><div class="top"><div class="brandWrap"><img class="brandLogo" src="./assets/generated/d6634bc2acb4185f.webp" alt="Logo original Consuma"><div class="brand">CONSUMA<small>ALMACÉN · CASA DE COMIDAS</small></div></div><div class="clock"><span id="time"></span><span class="status" id="status" aria-live="polite">—</span></div><div class="socialTop">
+<button class="socialBtn waIcon" onclick="openCart()" aria-label="WhatsApp / finalizar pedido" title="WhatsApp / finalizar pedido"><svg viewBox="0 0 32 32"><path fill="currentColor" d="M16 3a12.6 12.6 0 0 0-10.8 19.1L3.5 28.5l6.6-1.7A12.7 12.7 0 1 0 16 3Zm0 22.9c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1.1-3.8-.3-.4A10.3 10.3 0 1 1 16 25.9Zm5.7-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.5.9-1.8.1-.2 0-.4 0-.6l-1-2.5c-.3-.6-.6-.5-.9-.5h-.7c-.2 0-.6.1-1 .5-1.1 1.2-1.5 2.7-1.1 4.3.5 2.4 2.2 4.6 4.3 6.1 2.4 1.8 5.7 2.8 7.6 2 .8-.3 1.7-1.3 1.9-2.2.2-.8.2-1.5.1-1.7-.2-.2-.5-.3-.8-.5Z"/></svg></button>
+<a class="socialBtn igIcon" href="https://www.instagram.com/consuma.ok/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="6" fill="none" stroke="currentColor" stroke-width="2.7"/><circle cx="16" cy="16" r="5.3" fill="none" stroke="currentColor" stroke-width="2.7"/><circle cx="23.2" cy="8.9" r="1.5" fill="currentColor"/></svg></a>
+<a class="socialBtn mapIcon" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida%20Juan%20Gilberto%20Funes%20945%2C%20San%20Luis%2C%20Argentina" target="_blank" rel="noopener" aria-label="Cómo llegar a Consuma" title="Cómo llegar · Av. Juan Gilberto Funes 945">📍</a>
+
+</div></div>
+<div class="modes"><div><div class="mode active">🍳 COCINA</div><div class="mode">🛒 ALMACÉN</div></div></div>
+<div class="nav"><div class="navin" id="nav"></div></div></header>
+<main><div class="tools"><input id="search" placeholder="Buscar en la carta..." oninput="render()"></div><div id="content"></div></main>
+<button class="cart" aria-label="Ver pedido" onclick="openCart()">🛒 <span id="count" aria-live="polite">0</span> · Ver pedido</button>
+<div class="modal" id="modifierModal" aria-hidden="true"><div class="sheet modifierSheet"><button type="button" class="xclose" onclick="closeModifier()">×</button><h2 id="modTitle">Personalizá tu pedido</h2><p class="modHint">Elegí uno o más aderezos</p><div id="sauceGrid" class="sauceGrid"></div><button type="button" class="checkout" onclick="confirmModifier()">Agregar al carrito</button></div></div><div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="sheet orderSheet">
+<div class="cartTitleRow"><h2>Tu pedido</h2><button class="xclose" onclick="closeCart()">×</button></div>
+<div id="cartItems"></div>
+<p class="sauces">Aderezos: Mayonesa · Ketchup · Mostaza · Salsa golf · Picante · Sin aderezo</p>
+<div class="orderTotal"><span>Subtotal productos</span><b id="orderSubtotal">$0</b></div>
+<div class="orderForm">
+<div class="formLabel">¿CÓMO LO RECIBÍS?</div>
+<div class="deliveryToggle"><button id="btnDelivery" class="active" type="button" onclick="setDeliveryMode('delivery')">🛵 Delivery</button><button id="btnPickup" type="button" onclick="setDeliveryMode('pickup')">🏪 Retiro</button></div>
+<div class="form2"><label><span>NOMBRE *</span><input id="customerName" placeholder="Tu nombre" autocomplete="name"></label><label><span>TELÉFONO *</span><input id="customerPhone" placeholder="2664 123456" inputmode="tel" autocomplete="tel"></label></div>
+<div id="deliveryFields" class="deliveryFields">
+<label><span>DIRECCIÓN *</span><input id="customerAddress" placeholder="Calle y número" autocomplete="street-address"></label>
+<div class="form2"><label><span>BARRIO / ZONA</span><input id="customerBarrio" placeholder="Barrio"></label><label><span>REFERENCIA / ENTRE CALLES</span><input id="customerRef" placeholder="Referencia"></label></div>
+<div class="formLabel">ZONA DE ENVÍO *</div>
+<div class="zoneGrid">
+<button class="zoneBtn active" type="button" onclick="selectZone(this,'Dentro de las 4 avenidas',1500)"><b>4 Avenidas</b><small>$1.500</small></button>
+<button class="zoneBtn" type="button" onclick="selectZone(this,'Pasando las 4 avenidas',2000)"><b>Pasando 4 Avenidas</b><small>$2.000</small></button>
+<button class="zoneBtn" type="button" onclick="selectZone(this,'Zona Sur / 500 Viviendas',2500)"><b>Zona Sur / 500 Viviendas</b><small>$2.500</small></button>
+<button class="zoneBtn" type="button" onclick="selectZone(this,'1.ª a 3.ª rotonda',null)"><b>1.ª a 3.ª rotonda</b><small>Consultar</small></button>
+<button class="zoneBtn" type="button" onclick="selectZone(this,'Serranía Puntana',null)"><b>Serranía Puntana</b><small>Consultar</small></button>
+<button class="zoneBtn" type="button" onclick="selectZone(this,'Juana Koslay',null)"><b>Juana Koslay</b><small>Consultar</small></button>
+</div>
+<button type="button" class="gpsBtn" onclick="shareGPS()">📍 Compartir mi ubicación</button>
+<div id="gpsStatus" class="gpsStatus">Ubicación todavía no compartida.</div>
+<div class="shippingLine"><span>Envío</span><b id="shippingText">$1.500</b></div>
+</div>
+<div class="form2"><label><span>FORMA DE PAGO *</span><select id="payment" onchange="toggleChange()"><option value="">Elegir</option><option>Efectivo</option><option>Transferencia</option></select></label><label id="changeField" class="hidden"><span>¿CON CUÁNTO PAGÁS?</span><input id="changeFor" inputmode="numeric" placeholder="Ej. 30000"></label></div>
+<label><span>ACLARACIONES</span><textarea id="orderNote" maxlength="400" placeholder="Ej.: sin cebolla, tocar timbre..."></textarea></label>
+<div class="orderTotal grand"><span>Total estimado</span><b id="grandTotal">$0</b></div>
+<div class="note">Las zonas “Consultar” no suman costo automático. Se confirma por WhatsApp.</div>
+<div id="formError" class="formError"></div>
+<button class="checkout" onclick="sendWA()">Finalizar por WhatsApp</button>
+</div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./js/productos.js?v=20260819-2125" defer></script>
+<script src="./js/carrito.js?v=20260819-2125" defer></script>
+<script src="./js/checkout.js?v=20260819-2125" defer></script>
+<script src="./js/whatsapp.js?v=20260819-2145" defer></script>
+<script src="./js/app.js?v=20260819-2145" defer></script>
+<script src="./js/consuma-menu-update-2026-08-21.js?v=20260821" defer></script>
+</body></html>
