@@ -1,58 +1,21 @@
 
-const PROMOS=[{"id":"promo1","n":1,"name":"2 muzzas a la piedra","price":24000,"img":"./assets/generated/2c86e5406bf83c5c.webp"},{"id":"promo2","n":2,"name":"1 muzza + 1 especial","price":27000,"img":"./assets/generated/b0242a8e465fbcfb.webp"},{"id":"promo3","n":3,"name":"1 muzza + 1 docena de empanadas","price":26000,"img":"./assets/generated/72d4083d7a3ecb24.webp"},{"id":"promo4","n":4,"name":"4 hamburguesas clásicas","price":25000,"img":"./assets/generated/586db5d2a0266ca4.webp"},{"id":"promo5","n":5,"name":"2 lomos completos","price":30000,"img":"./assets/generated/fa49ae670f632e45.webp"},{"id":"promo6","n":6,"name":"2 bondiolas","price":22000,"img":"./assets/generated/1e5d7e41cda95910.webp"},{"id":"promo7","n":7,"name":"2 hamburguesas XL con fritas","price":20000,"img":"./assets/generated/342abe21e4e319b4.webp"},{"id":"promo8","n":8,"name":"2 muzzarellas al molde","price":20000,"img":"./assets/generated/a64437401731e458.webp"}];
-const PRODUCTS=[{"cat":"Pizzas","name":"Pizza al molde · Muzzarella","desc":"","price":12000},{"cat":"Pizzas","name":"Pizza Muzzarella","desc":"A la piedra","price":14000},{"cat":"Pizzas","name":"Pizza doble muzzarella","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza napolitana","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial","desc":"Jamón cocido y morrones rojos · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza huevo y morrón","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial huevo y morrón","desc":"A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza 4 quesos","desc":"Queso tybo, roquefort, muzzarella y parmesano · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza calabresa","desc":"A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza jamón crudo y rúcula","desc":"Jamón crudo, rúcula y parmesano · A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza fugazza","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza palmitos y salsa golf","desc":"Palmitos y salsa golf · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza de champiñones","desc":"Champiñones, jamón y alioli · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza mediterránea","desc":"Muzzarella, tomates secos, albahaca, ajo y aceitunas negras","price":16000},{"cat":"Pizzas","name":"Pizza brava","desc":"Muzzarella, jalapeño y salsa picante","price":16000},{"cat":"Pizzas","name":"Pizza roquefort con nuez","desc":"Muzzarella, roquefort y nueces","price":17000},{"cat":"Pizzas","name":"Pizza Consuma","desc":"Papas fritas, jamón cocido, huevos fritos, verdeo y cheddar líquido","price":20000},{"cat":"Papas","name":"Papas individual","desc":"","price":3500},{"cat":"Papas","name":"Papas porción chica","desc":"","price":7000},{"cat":"Papas","name":"Papas porción grande","desc":"","price":11000},{"cat":"Papas","name":"Papas porción chica cheddar y bacon","desc":"","price":9000},{"cat":"Papas","name":"Papas porción grande cheddar & bacon","desc":"","price":14000},{"cat":"Empanadas","name":"Carne · Docena","desc":"12 unidades","price":15000},{"cat":"Empanadas","name":"Carne · Media docena","desc":"6 unidades","price":7500},{"cat":"Empanadas","name":"Carne · Unidad","desc":"1 unidad","price":1500},{"cat":"Empanadas","name":"Jamón y queso · Docena","desc":"12 unidades","price":15000},{"cat":"Empanadas","name":"Jamón y queso · Media docena","desc":"6 unidades","price":7500},{"cat":"Empanadas","name":"Jamón y queso · Unidad","desc":"1 unidad","price":1500},{"cat":"Empanadas","name":"Árabes · Docena","desc":"12 unidades","price":15000},{"cat":"Empanadas","name":"Árabes · Media docena","desc":"6 unidades","price":7500},{"cat":"Empanadas","name":"Árabes · Unidad","desc":"1 unidad","price":1500},{"cat":"Hamburguesas","name":"Consuma clásica","desc":"Medallón de carne, lechuga, tomate, jamón y huevo","price":8000},{"cat":"Hamburguesas","name":"Consuma clásica XL","desc":"Medallón de carne, lechuga, tomate, jamón y huevo","price":12000},{"cat":"Hamburguesas","name":"Consuma doble cheddar & bacon","desc":"2 medallones de carne, cheddar y bacon","price":10000},{"cat":"Hamburguesas","name":"Consuma doble cheddar & bacon XL","desc":"2 medallones de carne, cheddar y bacon","price":15000},{"cat":"Hamburguesas","name":"Cheese Burger","desc":"Medallón de carne, muzzarella, queso tybo, cheddar y huevo","price":10000},{"cat":"Hamburguesas","name":"Cheddar simple","desc":"Medallón de carne y una feta de queso cheddar","price":6000},{"cat":"Hamburguesas","name":"Hamburguesa gigante","desc":"Rinde 8 porciones · Para 3 a 4 personas","price":28000},{"cat":"Hamburguesas","name":"Pizza Burger","desc":"Rinde 8 porciones · Para 3 a 4 personas","price":34000},{"cat":"Lomos","name":"Lomo completo","desc":"","price":16000},{"cat":"Lomos","name":"Lomo completo XL","desc":"","price":22000},{"cat":"Lomos","name":"Lomo completo XL a la pizza","desc":"","price":25000},{"cat":"Lomos","name":"Lomo gigante","desc":"Rinde 8 porciones · Para 3 a 4 personas","price":38000},{"cat":"Lomos","name":"Pizza lomo","desc":"Rinde 8 porciones · Para 3 a 4 personas","price":42000},{"cat":"Focaccia y pan","name":"Focaccia vegetariana","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Focaccia jamón y queso","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Focaccia salame y queso","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Pan casero","desc":"","price":3000},{"cat":"Milanesas","name":"Milanesa de carne a la napolitana + fritas","desc":"","price":14000},{"cat":"Milanesas","name":"Milanesa de pollo a la napolitana + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW de bondiola mechada + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW de matambre de cerdo + fritas","desc":"","price":13000},{"cat":"Sándwiches","name":"SW de carne mechada + fritas","desc":"","price":14000},{"cat":"Sándwiches","name":"SW de pollo mechado + fritas","desc":"","price":11000},{"cat":"Sándwiches","name":"SW Mila pollo + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW Mila carne + fritas","desc":"","price":13000}];
+const PROMOS=[{"id":"promo1","n":1,"name":"2 muzzas a la piedra","price":24000,"img":"./assets/generated/2c86e5406bf83c5c.webp"},{"id":"promo2","n":2,"name":"1 muzza + 1 especial","price":27000,"img":"./assets/generated/b0242a8e465fbcfb.webp"},{"id":"promo3","n":3,"name":"1 muzza + 1 docena de empanadas","price":26000,"img":"./assets/generated/72d4083d7a3ecb24.webp"},{"id":"promo4","n":4,"name":"4 hamburguesas clásicas + fritas","price":28000,"img":"./assets/generated/586db5d2a0266ca4.webp"},{"id":"promo5","n":5,"name":"2 lomos completos + fritas","price":30000,"img":"./assets/generated/fa49ae670f632e45.webp"},{"id":"promo6","n":6,"name":"2 bondiolas + fritas","price":22000,"img":"./assets/generated/1e5d7e41cda95910.webp"},{"id":"promo7","n":7,"name":"2 hamburguesas XL con fritas","price":20000,"img":"./assets/generated/342abe21e4e319b4.webp"},{"id":"promo8","n":8,"name":"2 muzzarellas al molde","price":20000,"img":"./assets/generated/a64437401731e458.webp"}];
+const PRODUCTS=[{"cat":"Pizzas","name":"Pizza al molde · Muzzarella","desc":"","price":12000},{"cat":"Pizzas","name":"Pizza Muzzarella","desc":"A la piedra","price":14000},{"cat":"Pizzas","name":"Pizza doble muzzarella","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza napolitana","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial","desc":"Jamón cocido y morrones rojos · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza huevo y morrón","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial huevo y morrón","desc":"A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza 4 quesos","desc":"Queso tybo, roquefort, muzzarella y parmesano · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza calabresa","desc":"A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza jamón crudo y rúcula","desc":"Jamón crudo, rúcula y parmesano · A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza fugazza","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza de palmitos","desc":"Palmitos y salsa golf · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza champiñones clásica","desc":"Salteado con ajo picado, champiñones y perejil · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza champiñones premium","desc":"Muzzarella, champiñones, panceta crocante y parmesano rallado · A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza mediterránea","desc":"Mozzarella, tomates secos, albahaca, ajo y aceitunas negras · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza brava","desc":"Mozzarella, jalapeño y salsa picante · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza roquefort con nuez","desc":"Mozzarella, roquefort y nueces · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza Consuma","desc":"Papas fritas, jamón cocido, huevos fritos y verdeo · A la piedra","price":20000},{"cat":"Papas","name":"Papas individual","desc":"","price":3500},{"cat":"Papas","name":"Papas porción chica","desc":"","price":7000},{"cat":"Papas","name":"Papas porción grande","desc":"","price":11000},{"cat":"Papas","name":"Papas porción chica cheddar y bacon","desc":"","price":9000},{"cat":"Papas","name":"Papas porción grande cheddar & bacon","desc":"","price":14000},{"cat":"Empanadas","name":"Carne · Docena","desc":"12 unidades","price":16000},{"cat":"Empanadas","name":"Carne · Media docena","desc":"6 unidades","price":8000},{"cat":"Empanadas","name":"Carne · Unidad","desc":"1 unidad","price":1500},{"cat":"Empanadas","name":"Jamón y queso · Docena","desc":"12 unidades","price":16000},{"cat":"Empanadas","name":"Jamón y queso · Media docena","desc":"6 unidades","price":8000},{"cat":"Empanadas","name":"Jamón y queso · Unidad","desc":"1 unidad","price":1500},{"cat":"Empanadas","name":"Árabes · Docena","desc":"12 unidades","price":16000},{"cat":"Empanadas","name":"Árabes · Media docena","desc":"6 unidades","price":8000},{"cat":"Empanadas","name":"Árabes · Unidad","desc":"1 unidad","price":1500},{"cat":"Hamburguesas","name":"Consuma clásica","desc":"Medallón de carne, lechuga, tomate, paleta jamonada y huevo · + fritas","price":8000},{"cat":"Hamburguesas","name":"Consuma clásica XL","desc":"Medallón de carne, lechuga, tomate, paleta jamonada y huevo · + fritas","price":12000},{"cat":"Hamburguesas","name":"Consuma doble cheddar & bacon","desc":"Medallón de carne, cheddar y bacon · + fritas","price":12000},{"cat":"Hamburguesas","name":"Consuma doble cheddar & bacon XL","desc":"Medallón de carne, cheddar y bacon · + fritas","price":15000},{"cat":"Hamburguesas","name":"Cheese Burger","desc":"Medallón de carne, muzzarella, queso tybo y cheddar · + fritas","price":12000},{"cat":"Hamburguesas","name":"Simple cheddar","desc":"Medallón y una feta de queso cheddar · + fritas","price":6000},{"cat":"Hamburguesas","name":"Hamburguesa gigante","desc":"Rinde 8 porciones · + fritas","price":28000},{"cat":"Hamburguesas","name":"Pizza Burger","desc":"Rinde 8 porciones · + fritas","price":34000,"medallonExtra":2500},{"cat":"Lomos","name":"Lomo completo","desc":"+ fritas","price":16000},{"cat":"Lomos","name":"Lomo completo XL","desc":"+ fritas","price":22000},{"cat":"Lomos","name":"Lomo completo XL a la pizza","desc":"+ fritas","price":25000},{"cat":"Lomos","name":"Lomo gigante","desc":"Rinde 8 porciones · + fritas","price":38000},{"cat":"Lomos","name":"Pizza lomo","desc":"Rinde 8 porciones · + fritas","price":42000},{"cat":"Focaccia y pan","name":"Focaccia vegetariana","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Focaccia jamón y queso","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Focaccia salame y queso","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Pan casero","desc":"","price":3000},{"cat":"Milanesas","name":"Milanesa de carne a la napolitana + fritas","desc":"","price":14000},{"cat":"Milanesas","name":"Milanesa de pollo a la napolitana + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW de bondiola mechada + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW de matambre de cerdo + fritas","desc":"","price":13000},{"cat":"Sándwiches","name":"SW de carne mechada + fritas","desc":"","price":14000},{"cat":"Sándwiches","name":"SW de pollo mechado + fritas","desc":"","price":11000},{"cat":"Sándwiches","name":"SW Mila pollo + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW Mila carne + fritas","desc":"","price":14000}];
 const CATS=["Promos", "Pizzas", "Papas", "Milanesas", "Empanadas", "Hamburguesas", "Lomos", "Focaccia y pan", "Sándwiches"];
 let active="Promos", cart=[];
 try{const stored=JSON.parse(localStorage.getItem("consumaCart")||"[]");cart=Array.isArray(stored)?stored:[]}catch(e){cart=[];try{localStorage.removeItem("consumaCart")}catch(_){}}
-const SAUCES=["Mayonesa","Salsa golf","Ketchup","Mostaza","Picante","Alioli","Salsa picante de la casa","Sin aderezo"];
+const SAUCES=["Sin aderezo","Mayonesa","Ketchup","Mostaza","Salsa golf","Picante"];
 let deliveryMode="delivery",shippingCost=1500,shippingZone="Dentro de las 4 avenidas",gpsLink="";
 let pending=null;
 const money=n=>"$"+Number(n||0).toLocaleString("es-AR");
 function nav(){
- const el=document.getElementById("nav");
- if(!el)return;
- el.innerHTML=CATS.map(c=>`<button type="button" data-cat="${c}" class="${c===active?'active':''}" onclick="selectCategory('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
+ document.getElementById("nav").innerHTML=CATS.map(c=>`<button data-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
 }
 function slug(x){return x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9]+/g,"-").toLowerCase();}
-function selectCategory(cat){
- active=cat;
- nav();
- updateQuickNav();
- const target=document.getElementById("sec-"+slug(cat));
- if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+function scrollToCat(cat){
+ const el=document.getElementById("sec-"+slug(cat));
+ if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
 }
-function scrollToCat(cat){selectCategory(cat)}
-
-function ensureQuickNav(){
- if(document.getElementById("premiumQuick"))return;
- const main=document.querySelector("main");
- if(!main)return;
- const quick=document.createElement("div");
- quick.id="premiumQuick";
- quick.className="premiumQuick";
- quick.setAttribute("aria-label","Navegación rápida de la carta");
- quick.innerHTML=CATS.map(c=>`<button type="button" data-quick-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
- main.parentNode.insertBefore(quick,main);
- const top=document.createElement("button");
- top.type="button"; top.id="premiumTopBtn"; top.className="premiumTopBtn"; top.textContent="↑"; top.setAttribute("aria-label","Volver arriba");
- top.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
- document.body.appendChild(top);
- window.addEventListener("scroll",()=>top.classList.toggle("show",window.scrollY>700),{passive:true});
- updateQuickNav();
-}
-function updateQuickNav(){
- document.querySelectorAll("[data-quick-cat]").forEach(b=>b.classList.toggle("active",b.dataset.quickCat===active));
- document.querySelectorAll("#nav [data-cat]").forEach(b=>b.classList.toggle("active",b.dataset.cat===active));
-}
-function syncActiveSection(){
- const sections=CATS.map(c=>({cat:c,el:document.getElementById("sec-"+slug(c))})).filter(x=>x.el);
- if(!sections.length)return;
- let current=sections[0].cat;
- const marker=Math.min(220,window.innerHeight*.28);
- for(const x of sections){if(x.el.getBoundingClientRect().top<=marker)current=x.cat;else break;}
- if(current!==active){active=current;updateQuickNav();}
-}
-window.addEventListener("scroll",syncActiveSection,{passive:true});
 
 function halfPrice(price){return Math.round(price/2)+(price>=19000?2000:1000)}
 function addHalfPizza(name,price){
@@ -67,84 +30,45 @@ function add(name,price,cat=""){
  cart.push({name,price,mods:[],qty:1});saveCart();
 }
 function saveCart(){try{localStorage.setItem("consumaCart",JSON.stringify(cart))}catch(e){}count()}
-function extraMedallonPrice(name,cat){
- if(cat!=="Hamburguesas")return 0;
- const n=name.toLowerCase();
- if(n.includes("gigante")||n.includes("pizza burger")||n.includes("xl"))return 2000;
- return 1500;
-}
 function openModifier(name,price,cat){
  pending={name,price,cat};
- const title=document.getElementById("modTitle"),grid=document.getElementById("sauceGrid"),modal=document.getElementById("modifierModal");
- if(!title||!grid||!modal){cart.push({name,price,mods:[],qty:1});saveCart();return;}
- title.textContent=name;
- let html=SAUCES.map(x=>`<label class="sauceOpt"><input type="checkbox" value="${x}"><span>${x}</span></label>`).join("");
- const extraPrice=extraMedallonPrice(name,cat);
- if(extraPrice)html+=`<label class="sauceOpt extraMed"><input type="checkbox" id="extraMedallon" value="Medallón extra"><span>Agregar 1 medallón <b>+${money(extraPrice)}</b></span></label>`;
- grid.innerHTML=html;
- grid.querySelectorAll('input[type="checkbox"]').forEach(el=>el.addEventListener("change",function(){
-   const all=[...grid.querySelectorAll('input[type="checkbox"]')];
-   if(this.value==="Sin aderezo"&&this.checked)all.forEach(x=>{if(x!==this&&x.id!=="extraMedallon")x.checked=false});
-   else if(this.checked&&this.id!=="extraMedallon"){const none=all.find(x=>x.value==="Sin aderezo");if(none)none.checked=false;}
- }));
- modal.classList.add("open");
- modal.setAttribute("aria-hidden","false");
- document.body.classList.add("modal-open");
+ document.getElementById("modTitle").textContent=name;
+ document.getElementById("sauceGrid").innerHTML=SAUCES.map((x,i)=>`<label class="sauceOpt"><input type="checkbox" value="${x}" ${i===0?"checked":""}><span>${x}</span></label>`).join("");
+ document.getElementById("medallonRow").style.display=cat==="Hamburguesas"?"flex":"none";
+ if(cat==="Hamburguesas"){
+   const extra=/(?:\bXL\b|Hamburguesa gigante|Burger gigante|Pizza Burger|Pizzaburger)/i.test(name)?2500:2000;
+   const mp=document.getElementById("medallonPrice");if(mp)mp.textContent="+"+money(extra);
+ }
+ document.getElementById("extraMedallon").checked=false;
+ document.getElementById("modifierModal").classList.add("open");
 }
-
-function closeModifier(){const modal=document.getElementById("modifierModal");if(modal){modal.classList.remove("open");modal.setAttribute("aria-hidden","true")}document.body.classList.remove("modal-open");pending=null}
+function closeModifier(){document.getElementById("modifierModal").classList.remove("open");pending=null}
 function confirmModifier(){
  if(!pending)return;
- const grid=document.getElementById("sauceGrid");
- const checked=grid?[...grid.querySelectorAll('input[type="checkbox"]:checked')]:[];
- const extra=checked.some(x=>x.id==="extraMedallon");
- let mods=checked.filter(x=>x.id!=="extraMedallon").map(x=>x.value);
- const extraPrice=extra?extraMedallonPrice(pending.name,pending.cat):0;
- if(extraPrice)mods.push(`+1 medallón (${money(extraPrice)})`);
- cart.push({name:pending.name,price:pending.price+extraPrice,mods,qty:1});saveCart();closeModifier();
+ let mods=[...document.querySelectorAll("#sauceGrid input:checked")].map(x=>x.value);
+ let price=pending.price;
+ if(pending.cat==="Hamburguesas"&&document.getElementById("extraMedallon").checked){
+ const extra=/(?:\bXL\b|Hamburguesa gigante|Burger gigante|Pizza Burger|Pizzaburger)/i.test(pending.name)?2500:2000;
+ price+=extra;mods.push("Medallón extra +"+money(extra));
+}
+ cart.push({name:pending.name,price,mods,qty:1});saveCart();closeModifier();
 }
 function count(){document.getElementById("count").textContent=cart.length}
 function render(){
- const search=document.getElementById("search");
- const q=(search?search.value:"").toLowerCase().trim();
+ const q=document.getElementById("search").value.toLowerCase().trim();
  let blocks=[];
  const pp=PROMOS.filter(x=>x.name.toLowerCase().includes(q));
  if(pp.length){
-   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promos 1 a 8</h2><div class="goldline"></div><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}" style="background-image:url('${x.img}')"></div><div class="pcontent"><span class="pill">Promo ${x.n}</span><h3>${x.name}</h3><div class="row"><span class="price">${money(x.price)}</span><button type="button" class="add js-add" data-kind="promo" data-id="${x.id}" aria-label="Agregar ${x.name} al pedido">+</button></div></div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promos 1 a 8</h2><div class="goldline"></div><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}" style="background-image:url('${x.img}')"></div><div class="pcontent"><span class="pill">Promo ${x.n}</span><h3>${x.name}</h3><div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
  }
  for(const cat of CATS.filter(c=>c!=="Promos")){
-   let a=PRODUCTS.map((x,i)=>({...x,_idx:i})).filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
+   let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
-   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button type="button" class="halfBtn js-half" data-index="${x._idx}">½ · ${money(halfPrice(x.price))}</button>`:""}<button type="button" class="add js-add" data-kind="product" data-index="${x._idx}" aria-label="Agregar ${x.name} al pedido">+</button>`:`<span class="soon">PRÓXIMAMENTE</span>`}</div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">PRÓXIMAMENTE</span>`}</div></article>`).join("")}</div></section>`);
  }
- const content=document.getElementById("content");
- if(content)content.innerHTML=blocks.join("");
- requestAnimationFrame(syncActiveSection);
+ document.getElementById("content").innerHTML=blocks.join("");
 }
-
-
-// Un único manejador delegado: evita que los botones + dependan de onclick inline.
-document.addEventListener("click",function(e){
- const addBtn=e.target.closest(".js-add");
- if(addBtn){
-   e.preventDefault();e.stopPropagation();
-   if(addBtn.dataset.kind==="promo"){
-     const x=PROMOS.find(p=>p.id===addBtn.dataset.id);
-     if(x)add(x.name,x.price,"Promos");
-   }else{
-     const x=PRODUCTS[Number(addBtn.dataset.index)];
-     if(x)add(x.name,x.price,x.cat);
-   }
-   return;
- }
- const halfBtn=e.target.closest(".js-half");
- if(halfBtn){
-   e.preventDefault();e.stopPropagation();
-   const x=PRODUCTS[Number(halfBtn.dataset.index)];
-   if(x)addHalfPizza(x.name,x.price);
- }
-});
 function openCart(){document.getElementById("modal").classList.add("open");renderCart()}
 function closeCart(){document.getElementById("modal").classList.remove("open")}
 function changeQty(i,delta){
@@ -212,18 +136,279 @@ function sendWA(){
  const waWin=window.open(waUrl,"_blank","noopener,noreferrer");
  if(!waWin){ window.location.href=waUrl; }
 }
-function tick(){
- const d=new Date();
- const timeEl=document.getElementById("time"),statusEl=document.getElementById("status");
- if(timeEl)timeEl.textContent=d.toLocaleTimeString("es-AR",{hour12:false});
- if(!statusEl)return;
- const day=d.getDay(),h=d.getHours(),m=d.getMinutes(),mins=h*60+m;
- // Dom–Jue 08:00–00:00; Vie–Sáb 08:00–01:00 del día siguiente.
- const openDay=mins>=480;
- const lateFromPrev=mins<60 && (day===0 || day===6); // 00:00–00:59 sábado/domingo corresponde a vie/sáb.
- const isOpen=openDay || lateFromPrev;
- statusEl.textContent=isOpen?"ABIERTO":"CERRADO";
- statusEl.dataset.state=isOpen?"open":"closed";
-}
+function tick(){let d=new Date();document.getElementById("time").textContent=d.toLocaleTimeString("es-AR",{hour12:false});let h=d.getHours();document.getElementById("status").textContent=(h>=9)?"ABIERTO":"CERRADO"}
 cart=cart.map(x=>({...x,qty:x.qty||1,mods:x.mods||[]}));
-nav();render();ensureQuickNav();count();tick();setInterval(tick,1000);
+nav();render();count();tick();setInterval(tick,1000);
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+  function moneyAR(n){return "$"+Number(n||0).toLocaleString("es-AR")}
+  function findSearch(){
+    return document.getElementById("search") ||
+      document.querySelector('input[type="search"]') ||
+      document.querySelector('input[placeholder*="Buscar" i]');
+  }
+  function sectionFor(name){
+    const els=[...document.querySelectorAll("section,[id^='sec-']")];
+    return els.find(el=>{
+      const t=(el.id+" "+(el.querySelector("h1,h2,h3")?.textContent||"")).toLowerCase();
+      return t.includes(name.toLowerCase());
+    });
+  }
+  function go(name){
+    const el=sectionFor(name);
+    if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function buildQuick(){
+    if(document.querySelector(".premiumQuick")) return;
+    const names=["Promos","Pizzas","Hamburguesas","Lomos","Papas","Empanadas"];
+    const nav=document.createElement("nav");
+    nav.className="premiumQuick";
+    nav.setAttribute("aria-label","Accesos rápidos");
+    names.forEach((n,i)=>{
+      const b=document.createElement("button");
+      b.type="button"; b.textContent=n;
+      if(i===0)b.classList.add("active");
+      b.onclick=()=>{[...nav.children].forEach(x=>x.classList.remove("active"));b.classList.add("active");go(n)};
+      nav.appendChild(b);
+    });
+    const anchor=document.querySelector("main")||document.querySelector(".wrap")||document.body.firstElementChild;
+    if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(nav,anchor);
+  }
+  function enhanceSearch(){
+    const q=findSearch(); if(!q)return;
+    q.setAttribute("autocomplete","off");
+    q.setAttribute("enterkeyhint","search");
+    q.setAttribute("aria-label","Buscar productos");
+    if(!q.parentElement.querySelector(".premiumSearchInfo")){
+      const info=document.createElement("div");info.className="premiumSearchInfo";info.setAttribute("aria-live","polite");
+      q.parentElement.appendChild(info);
+      const update=()=>{
+        const term=q.value.trim();
+        info.textContent=term?("Buscando: “"+term+"”"):"";
+      };
+      q.addEventListener("input",update,{passive:true});
+    }
+  }
+  function backTop(){
+    if(document.querySelector(".premiumTopBtn"))return;
+    const b=document.createElement("button");b.className="premiumTopBtn";b.type="button";
+    b.innerHTML="↑";b.title="Volver arriba";b.setAttribute("aria-label","Volver arriba");
+    b.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+    document.body.appendChild(b);
+    addEventListener("scroll",()=>b.classList.toggle("show",scrollY>700),{passive:true});
+  }
+  function cartAccessibility(){
+    document.querySelectorAll("button").forEach(b=>{
+      if(!b.getAttribute("aria-label") && b.textContent.trim()==="+") b.setAttribute("aria-label","Agregar");
+      if(!b.getAttribute("aria-label") && b.textContent.trim()==="−") b.setAttribute("aria-label","Restar");
+    });
+  }
+  function init(){
+    buildQuick();enhanceSearch();backTop();cartAccessibility();
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
+  else init();
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+  function setVH(){
+    document.documentElement.style.setProperty("--consuma-vh",(window.innerHeight*.01)+"px");
+  }
+  setVH();
+  window.addEventListener("resize",setVH,{passive:true});
+  window.addEventListener("orientationchange",function(){setTimeout(setVH,120)},{passive:true});
+  document.querySelectorAll("button,a,input,select,textarea").forEach(function(el){
+    if(!el.hasAttribute("tabindex") && (el.tagName==="BUTTON"||el.tagName==="A")) el.tabIndex=0;
+  });
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+ let savedY=0;
+ function lock(){
+   if(document.body.classList.contains("modal-open")) return;
+   savedY=window.scrollY||document.documentElement.scrollTop||0;
+   document.body.style.top=(-savedY)+"px";
+   document.body.classList.add("modal-open");
+ }
+ function unlock(){
+   if(!document.body.classList.contains("modal-open")) return;
+   document.body.classList.remove("modal-open");
+   document.body.style.top="";
+   window.scrollTo(0,savedY);
+ }
+ function visible(el){
+   if(!el)return false;
+   const cs=getComputedStyle(el);
+   return cs.display!=="none" && cs.visibility!=="hidden" && !el.hidden &&
+          (el.classList.contains("show")||el.classList.contains("open")||el.getAttribute("aria-hidden")==="false");
+ }
+ const ids=["modifierModal","cartModal"];
+ function sync(){
+   const any=ids.some(id=>visible(document.getElementById(id)));
+   any?lock():unlock();
+ }
+ const obs=new MutationObserver(sync);
+ ids.forEach(id=>{
+   const el=document.getElementById(id);
+   if(el)obs.observe(el,{attributes:true,attributeFilter:["class","style","hidden","aria-hidden"]});
+ });
+ document.addEventListener("click",()=>setTimeout(sync,0),true);
+ document.addEventListener("keydown",e=>{
+   if(e.key==="Escape")setTimeout(sync,0);
+ });
+ sync();
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+ function fixCart(){
+   const modal=document.getElementById('cartModal');
+   if(!modal)return;
+   const nodes=modal.querySelectorAll('*');
+   nodes.forEach(el=>{
+     if(el.closest('button')) return;
+     const cs=getComputedStyle(el);
+     const c=cs.color.match(/\d+/g);
+     if(!c || c.length<3) return;
+     const r=+c[0],g=+c[1],b=+c[2],a=c[3]===undefined?1:+c[3];
+     /* sólo corrige texto extremadamente claro dentro del carrito */
+     if(a < .65 || (r>205 && g>205 && b>205)){
+       el.style.setProperty('color','#111','important');
+       el.style.setProperty('-webkit-text-fill-color','#111','important');
+       el.style.setProperty('opacity','1','important');
+     }
+   });
+ }
+ const m=document.getElementById('cartModal');
+ if(m){
+   new MutationObserver(()=>requestAnimationFrame(fixCart))
+     .observe(m,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style']});
+ }
+ document.addEventListener('click',()=>setTimeout(fixCart,20),true);
+ fixCart();
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+ function forceBlack(){
+   const root=document.querySelector('#cartModal #cartItems')||document.getElementById('cartModal');
+   if(!root)return;
+   root.querySelectorAll('*').forEach(el=>{
+     if(el.matches('button') || el.closest('button')) return;
+     if(el.children.length===0 && el.textContent.trim()){
+       el.style.setProperty('color','#000','important');
+       el.style.setProperty('-webkit-text-fill-color','#000','important');
+       el.style.setProperty('opacity','1','important');
+       el.style.setProperty('filter','none','important');
+     }
+   });
+ }
+ const modal=document.getElementById('cartModal');
+ if(modal){
+   new MutationObserver(forceBlack).observe(modal,{subtree:true,childList:true,characterData:true});
+ }
+ document.addEventListener('click',()=>setTimeout(forceBlack,0),true);
+ setInterval(forceBlack,700);
+ forceBlack();
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+  function paint(){
+    var modal=document.getElementById('cartModal');
+    if(!modal) return;
+    var root=modal.querySelector('#cartItems')||modal;
+    root.querySelectorAll('*').forEach(function(el){
+      if(el.closest('button')) return;
+      if(el.textContent && el.textContent.trim() && el.children.length===0){
+        el.style.setProperty('color','#111','important');
+        el.style.setProperty('-webkit-text-fill-color','#111','important');
+        el.style.setProperty('opacity','1','important');
+        el.style.setProperty('filter','none','important');
+      }
+    });
+    modal.querySelectorAll('[class*="subtotal"],[id*="subtotal"]').forEach(function(el){
+      el.style.setProperty('background','#E4B72E','important');
+      el.style.setProperty('color','#090909','important');
+      el.style.setProperty('-webkit-text-fill-color','#090909','important');
+      el.querySelectorAll('*').forEach(function(x){
+        x.style.setProperty('color','#090909','important');
+        x.style.setProperty('-webkit-text-fill-color','#090909','important');
+        x.style.setProperty('opacity','1','important');
+      });
+    });
+  }
+  var modal=document.getElementById('cartModal');
+  if(modal) new MutationObserver(function(){requestAnimationFrame(paint)}).observe(modal,{subtree:true,childList:true,attributes:true});
+  document.addEventListener('click',function(){setTimeout(paint,10)},true);
+  paint();
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+ function forceCartContrast(){
+   var modal=document.getElementById('modal');
+   if(!modal)return;
+   modal.querySelectorAll('#cartItems .ci').forEach(function(row){
+     row.style.setProperty('opacity','1','important');
+     var name=row.querySelector('div:first-child b');
+     var price=row.querySelector(':scope > span');
+     var qty=row.querySelector('.qtyCtl strong');
+     [name,price,qty].forEach(function(el){
+       if(el){
+         el.style.setProperty('color','#050505','important');
+         el.style.setProperty('-webkit-text-fill-color','#050505','important');
+         el.style.setProperty('opacity','1','important');
+       }
+     });
+     row.querySelectorAll('small').forEach(function(el){
+       el.style.setProperty('color','#3E3A34','important');
+       el.style.setProperty('-webkit-text-fill-color','#3E3A34','important');
+       el.style.setProperty('opacity','1','important');
+     });
+   });
+   var sub=document.getElementById('orderSubtotal');
+   if(sub){
+     sub.style.setProperty('color','#050505','important');
+     sub.style.setProperty('-webkit-text-fill-color','#050505','important');
+     sub.style.setProperty('opacity','1','important');
+   }
+ }
+ var target=document.getElementById('modal');
+ if(target)new MutationObserver(forceCartContrast).observe(target,{subtree:true,childList:true,characterData:true});
+ document.addEventListener('click',function(){setTimeout(forceCartContrast,0)},true);
+ forceCartContrast();
+})();
+
+
+/* ---- original runtime block ---- */
+
+(function(){
+  const originalOpen = window.openModifier;
+  if(typeof originalOpen === "function"){
+    window.openModifier = function(product){
+      if(product && /(?:burger gigante|pizza ?burger)/i.test(product.name||"")){
+        product.medallonExtra = 2500;
+        product.extraMedallon = 2500;
+      }
+      return originalOpen.apply(this, arguments);
+    };
+  }
+})();
