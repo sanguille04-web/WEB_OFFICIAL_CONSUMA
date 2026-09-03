@@ -7,7 +7,7 @@ PROMOS.push({
   n:9,
   name:"2 hamburguesas simples + fritas",
   price:12000,
-  img:""
+  img:"./assets/generated/promo9-hamburguesas-simples.webp"
 });
 
 function insertAtEndOfCategory(category,product){
