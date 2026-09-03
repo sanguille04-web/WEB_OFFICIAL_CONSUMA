@@ -51,13 +51,13 @@ insertAtEndOfCategory("Empanadas",{
   cat:"Empanadas",
   name:"Bondiola a la cerveza · Media docena",
   desc:"6 unidades",
-  price:8000
+  price:9000
 });
 insertAtEndOfCategory("Empanadas",{
   cat:"Empanadas",
   name:"Bondiola a la cerveza · Unidad",
   desc:"1 unidad",
-  price:1500
+  price:2000
 });
 
 const burgerStart=PRODUCTS.findIndex(item=>item.cat==="Hamburguesas");
