@@ -162,7 +162,11 @@ function render(){
  }
  document.getElementById("content").innerHTML=blocks.join("");
 }
-function openCart(){document.getElementById("modal").classList.add("open");renderCart()}
+function openCart(){
+ const saucesNote=document.querySelector("#modal .sauces");
+ if(saucesNote)saucesNote.textContent="Los aderezos y extras elegidos se detallan debajo de cada producto.";
+ document.getElementById("modal").classList.add("open");renderCart();
+}
 function closeCart(){document.getElementById("modal").classList.remove("open")}
 function changeQty(i,delta){
  if(!cart[i])return;
