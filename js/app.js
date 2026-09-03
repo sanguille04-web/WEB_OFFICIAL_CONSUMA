@@ -43,7 +43,7 @@ const preservedBurgers=currentBurgers.filter(item=>
 );
 PRODUCTS.splice(burgerStart,currentBurgers.length,
   {cat:"Hamburguesas",name:"Simple cheddar",desc:"Medallón de carne, cebolla caramelizada y cheddar en feta · + fritas",price:7000},
-  {cat:"Hamburguesas",name:"Hamburguesa simple",desc:"Medallón de carne, lechuga y tomate · + fritas",price:6000},
+  {cat:"Hamburguesas",name:"Hamburguesa simple",desc:"Medallón de carne, lechuga y tomate · + fritas",price:6500},
   {cat:"Hamburguesas",name:"Cheeseburger",desc:"Medallón de carne, muzzarella, queso barra y cheddar en feta · + fritas",price:10000},
   {cat:"Hamburguesas",name:"Hamburguesa completa",desc:"Medallón de carne, lechuga, tomate, paleta jamonada, muzzarella y huevo · + fritas",price:8000},
   {cat:"Hamburguesas",name:"Hamburguesa completa XL",desc:"Medallón de carne, lechuga, tomate, paleta jamonada, muzzarella y huevo · + fritas",price:12000},
