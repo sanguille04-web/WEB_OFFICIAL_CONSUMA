@@ -1,160 +1,25 @@
 
-const PROMOS=[{"id":"promo1","n":1,"name":"2 muzzas a la piedra","price":24000,"img":"./assets/generated/2c86e5406bf83c5c.webp"},{"id":"promo2","n":2,"name":"1 muzza + 1 especial","price":27000,"img":"./assets/generated/b0242a8e465fbcfb.webp"},{"id":"promo3","n":3,"name":"1 muzza + 1 docena de empanadas (pollo, jamón y queso, carne o árabe)","price":26000,"img":"./assets/generated/72d4083d7a3ecb24.webp"},{"id":"promo4","n":4,"name":"4 hamburguesas completas + fritas","price":28000,"img":"./assets/generated/586db5d2a0266ca4.webp"},{"id":"promo5","n":5,"name":"2 lomos completos + fritas","price":30000,"img":"./assets/generated/fa49ae670f632e45.webp"},{"id":"promo6","n":6,"name":"2 sándwiches de bondiola + fritas","price":24000,"img":"./assets/generated/1e5d7e41cda95910.webp"},{"id":"promo7","n":7,"name":"2 hamburguesas completas XL + fritas","price":24000,"img":"./assets/generated/342abe21e4e319b4.webp"},{"id":"promo8","n":8,"name":"2 muzzarellas al molde","price":20000,"img":"./assets/generated/a64437401731e458.webp"}];
-const PRODUCTS=[{"cat":"Pizzas","name":"Pizza al molde · Muzzarella","desc":"","price":12000},{"cat":"Pizzas","name":"Pizza Muzzarella","desc":"A la piedra","price":14000},{"cat":"Pizzas","name":"Pizza doble muzzarella","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza napolitana","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial","desc":"Jamón cocido y morrones rojos · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza huevo y morrón","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial huevo y morrón","desc":"A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza 4 quesos","desc":"Queso tybo, roquefort, muzzarella y parmesano · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza calabresa","desc":"A la piedra","price":15000},{"cat":"Pizzas","name":"Pizza jamón crudo y rúcula","desc":"Jamón crudo, rúcula y parmesano · A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza fugazza","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza de palmitos","desc":"Palmitos y salsa golf · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza champiñones clásica","desc":"Salteado con ajo picado, champiñones y perejil · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza champiñones premium","desc":"Muzzarella, champiñones, panceta crocante y parmesano rallado · A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza mediterránea","desc":"Mozzarella, tomates secos, albahaca, ajo y aceitunas negras · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza brava","desc":"Mozzarella, jalapeño y salsa picante · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza roquefort con nuez","desc":"Mozzarella, roquefort y nueces · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza Consuma","desc":"Papas fritas, jamón cocido, huevos fritos y verdeo · A la piedra","price":18000},{"cat":"Papas","name":"Papas individual","desc":"","price":3500},{"cat":"Papas","name":"Papas porción chica","desc":"","price":7000},{"cat":"Papas","name":"Papas porción grande","desc":"","price":11000},{"cat":"Papas","name":"Papas porción chica cheddar y bacon","desc":"","price":9000},{"cat":"Papas","name":"Papas porción grande cheddar & bacon","desc":"","price":14000},{"cat":"Empanadas","name":"Carne · Docena","desc":"12 unidades","price":16000},{"cat":"Empanadas","name":"Carne · Media docena","desc":"6 unidades","price":8000},{"cat":"Empanadas","name":"Carne · Unidad","desc":"1 unidad","price":1500},{"cat":"Empanadas","name":"Jamón y queso · Docena","desc":"12 unidades","price":16000},{"cat":"Empanadas","name":"Jamón y queso · Media docena","desc":"6 unidades","price":8000},{"cat":"Empanadas","name":"Jamón y queso · Unidad","desc":"1 unidad","price":1500},{"cat":"Empanadas","name":"Árabes · Docena","desc":"12 unidades","price":16000},{"cat":"Empanadas","name":"Árabes · Media docena","desc":"6 unidades","price":8000},{"cat":"Empanadas","name":"Árabes · Unidad","desc":"1 unidad","price":1500},{"cat":"Hamburguesas","name":"Consuma clásica","desc":"Medallón de carne, lechuga, tomate, paleta jamonada y huevo · + fritas","price":8000},{"cat":"Hamburguesas","name":"Consuma clásica XL","desc":"Medallón de carne, lechuga, tomate, paleta jamonada y huevo · + fritas","price":12000},{"cat":"Hamburguesas","name":"Consuma doble cheddar & bacon","desc":"Medallón de carne, cheddar y bacon · + fritas","price":12000},{"cat":"Hamburguesas","name":"Consuma doble cheddar & bacon XL","desc":"Medallón de carne, cheddar y bacon · + fritas","price":15000},{"cat":"Hamburguesas","name":"Cheese Burger","desc":"Medallón de carne, muzzarella, queso tybo y cheddar · + fritas","price":12000},{"cat":"Hamburguesas","name":"Simple cheddar","desc":"Medallón y una feta de queso cheddar · + fritas","price":6000},{"cat":"Hamburguesas","name":"Hamburguesa gigante","desc":"Rinde 8 porciones · + fritas","price":28000},{"cat":"Hamburguesas","name":"Pizza Burger","desc":"Rinde 8 porciones · + fritas","price":34000,"medallonExtra":2500},{"cat":"Lomos","name":"Lomo completo","desc":"+ fritas","price":16000},{"cat":"Lomos","name":"Lomo completo XL","desc":"+ fritas","price":22000},{"cat":"Lomos","name":"Lomo completo XL a la pizza","desc":"+ fritas","price":25000},{"cat":"Lomos","name":"Lomo gigante","desc":"Rinde 8 porciones · + fritas","price":38000},{"cat":"Lomos","name":"Pizza lomo","desc":"Rinde 8 porciones · + fritas","price":42000},{"cat":"Focaccia y pan","name":"Focaccia vegetariana","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Focaccia jamón y queso","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Focaccia salame y queso","desc":"","price":8000},{"cat":"Focaccia y pan","name":"Pan casero","desc":"","price":3000},{"cat":"Comidas al plato","name":"Milanesa de carne a la napolitana + fritas","desc":"","price":14000},{"cat":"Comidas al plato","name":"Milanesa de pollo a la napolitana + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW de bondiola mechada + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW de matambre de cerdo + fritas","desc":"","price":13000},{"cat":"Sándwiches","name":"SW de carne mechada + fritas","desc":"","price":14000},{"cat":"Sándwiches","name":"SW de pollo mechado + fritas","desc":"","price":11000},{"cat":"Sándwiches","name":"SW Mila pollo + fritas","desc":"","price":12000},{"cat":"Sándwiches","name":"SW Mila carne + fritas","desc":"","price":14000}];
-/* Actualización de carta · septiembre 2026 */
-function insertAtEndOfCategory(category,product){
-  let last=-1;
-  PRODUCTS.forEach((item,index)=>{if(item.cat===category)last=index});
-  PRODUCTS.splice(last+1,0,product);
-}
+const PROMOS=[{"id":"promo1","n":1,"name":"2 muzzas al molde","price":20000,"img":"./assets/generated/a64437401731e458.webp"},{"id":"promo2","n":2,"name":"2 muzzas a la piedra","price":24000,"img":"./assets/generated/2c86e5406bf83c5c.webp"},{"id":"promo3","n":3,"name":"1 muzza + 1 especial","price":27000,"img":"./assets/generated/b0242a8e465fbcfb.webp"},{"id":"promo4","n":4,"name":"1 muzza + 1 docena de empanadas (carne, pollo, jamón y queso o árabe)","price":27000,"img":"./assets/generated/72d4083d7a3ecb24.webp"},{"id":"promo5","n":5,"name":"4 hamburguesas clásicas + fritas","price":32000,"img":"./assets/generated/586db5d2a0266ca4.webp"},{"id":"promo6","n":6,"name":"2 hamburguesas completas XL + fritas","price":28000,"img":"./assets/generated/342abe21e4e319b4.webp"},{"id":"promo7","n":7,"name":"2 lomos completos + fritas","price":32000,"img":"./assets/generated/fa49ae670f632e45.webp"},{"id":"promo8","n":8,"name":"2 sándwiches de bondiola + fritas","price":26000,"img":"./assets/generated/1e5d7e41cda95910.webp"}];
+const PRODUCTS=[{"cat":"Pizzas","name":"Pizza al molde · Muzzarella","desc":"","price":12000},{"cat":"Pizzas","name":"Pizza Muzzarella","desc":"A la piedra","price":14000},{"cat":"Pizzas","name":"Pizza doble muzzarella","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza napolitana","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial","desc":"Jamón cocido y morrones rojos · A la piedra","price":18000},{"cat":"Pizzas","name":"Pizza huevo y morrón","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza especial huevo y morrón","desc":"A la piedra","price":19500},{"cat":"Pizzas","name":"Pizza 4 quesos","desc":"Queso tybo, roquefort, muzzarella y parmesano · A la piedra","price":19000},{"cat":"Pizzas","name":"Pizza calabresa","desc":"A la piedra","price":15000},{"cat":"Pizzas","name":"Pizza pepperoni","desc":"A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza jamón crudo y rúcula","desc":"Jamón crudo, rúcula y parmesano · A la piedra","price":20000},{"cat":"Pizzas","name":"Pizza fugazza","desc":"A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza de palmitos","desc":"Palmitos y salsa golf · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza champiñones clásica","desc":"Champiñones salteados con ajo picado y perejil · A la piedra","price":17000},{"cat":"Pizzas","name":"Pizza champiñones premium","desc":"Muzzarella, champiñones, panceta crocante y parmesano rallado · A la piedra","price":20000},{"cat":"Pizzas","name":"Pizza mediterránea","desc":"Muzzarella, tomates secos, albahaca, ajo y aceitunas negras · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza brava","desc":"Muzzarella, jalapeño y salsa picante · A la piedra","price":16000},{"cat":"Pizzas","name":"Pizza roquefort con nuez","desc":"Muzzarella, roquefort y nueces · A la piedra","price":19000},{"cat":"Pizzas","name":"Pizza Consuma","desc":"Papas fritas, jamón cocido, huevos fritos, verdeo y cheddar líquido · A la piedra","price":20000},{"cat":"Pizzas","name":"Pizza de pollo","desc":"Cebolla caramelizada, pollo y barbacoa · A la piedra","price":17000},{"cat":"Papas","name":"Papas individual","desc":"","price":4000},{"cat":"Papas","name":"Papas porción chica","desc":"","price":7500},{"cat":"Papas","name":"Papas porción grande","desc":"","price":12000},{"cat":"Papas","name":"Papas porción chica cheddar y bacon","desc":"","price":10000},{"cat":"Papas","name":"Papas porción grande cheddar & bacon","desc":"","price":15000},{"cat":"Comidas al plato","name":"Milanesa de carne a la napolitana","desc":"Con fritas","price":15000},{"cat":"Comidas al plato","name":"Milanesa de pollo a la napolitana","desc":"Con fritas","price":12000},{"cat":"Comidas al plato","name":"Pata muslo al horno","desc":"Con fritas o ensalada","price":9000},{"cat":"Comidas al plato","name":"Costeleta de cerdo","desc":"Con fritas o ensalada","price":11000},{"cat":"Comidas al plato","name":"Costeleta de novillo","desc":"Con fritas o ensalada","price":13000},{"cat":"Comidas al plato","name":"Matambre de cerdo al limón","desc":"Con fritas o ensalada","price":11000},{"cat":"Comidas al plato","name":"Matambre de cerdo a la pizza","desc":"Con fritas o ensalada","price":13000},{"cat":"Comidas al plato","name":"Vacío al plato","desc":"Con fritas o ensalada","price":16000},{"cat":"Comidas al plato","name":"Sorrentinos de jamón y muzzarella","desc":"Con salsa boloñesa, blanca o mixta","price":11000},{"cat":"Comidas al plato","name":"Sorrentinos de bondiola","desc":"Con salsa boloñesa, blanca o mixta","price":13000},{"cat":"Comidas al plato","name":"Canelones de verdura","desc":"Con salsa boloñesa, blanca o mixta","price":9000},{"cat":"Empanadas","name":"Carne · Docena","desc":"12 unidades","price":17000},{"cat":"Empanadas","name":"Carne · Media docena","desc":"6 unidades","price":8500},{"cat":"Empanadas","name":"Carne · Unidad","desc":"1 unidad","price":1800},{"cat":"Empanadas","name":"Jamón y queso · Docena","desc":"12 unidades","price":17000},{"cat":"Empanadas","name":"Jamón y queso · Media docena","desc":"6 unidades","price":8500},{"cat":"Empanadas","name":"Jamón y queso · Unidad","desc":"1 unidad","price":1800},{"cat":"Empanadas","name":"Árabes · Docena","desc":"12 unidades","price":17000},{"cat":"Empanadas","name":"Árabes · Media docena","desc":"6 unidades","price":8500},{"cat":"Empanadas","name":"Árabes · Unidad","desc":"1 unidad","price":1800},{"cat":"Empanadas","name":"Pollo · Docena","desc":"12 unidades","price":17000},{"cat":"Empanadas","name":"Pollo · Media docena","desc":"6 unidades","price":8500},{"cat":"Empanadas","name":"Pollo · Unidad","desc":"1 unidad","price":1800},{"cat":"Empanadas","name":"Bondiola a la cerveza · Docena","desc":"12 unidades","price":19000},{"cat":"Empanadas","name":"Bondiola a la cerveza · Media docena","desc":"6 unidades","price":9500},{"cat":"Empanadas","name":"Bondiola a la cerveza · Unidad","desc":"1 unidad","price":2200},{"cat":"Hamburguesas","name":"Smash Consuma","desc":"Medallón de carne smash, cheddar, cebolla caramelizada y salsa burger · Incluye fritas","price":8500},{"cat":"Hamburguesas","name":"Clásica Consuma","desc":"Medallón de carne, lechuga, tomate y mayonesa · Incluye fritas","price":8500},{"cat":"Hamburguesas","name":"Cheeseburger Consuma","desc":"Medallón de carne, queso tybo, cheddar, cebolla caramelizada y mostaza · Incluye fritas","price":8000},{"cat":"Hamburguesas","name":"Completa Consuma","desc":"Medallón de carne, lechuga, tomate, jamón, huevo, muzzarella y mayonesa · Incluye fritas","price":9000},{"cat":"Hamburguesas","name":"Completa Consuma XL","desc":"Medallón de carne, lechuga, tomate, jamón, huevo, muzzarella y mayonesa · Incluye fritas","price":15000},{"cat":"Hamburguesas","name":"Doble cheddar & bacon Consuma","desc":"2 medallones de carne, doble cheddar, doble bacon y barbacoa · Incluye fritas","price":13500},{"cat":"Hamburguesas","name":"Doble cheddar & bacon Consuma XL","desc":"2 medallones de carne, doble cheddar, doble bacon y barbacoa · Incluye fritas","price":16500},{"cat":"Hamburguesas","name":"Hamburguesa gigante","desc":"Rinde 8 porciones · Incluye fritas","price":28000},{"cat":"Hamburguesas","name":"Pizza Burger","desc":"Rinde 8 porciones · Incluye fritas","price":34000,"medallonExtra":2500},{"cat":"Lomos","name":"Lomo completo","desc":"Incluye fritas","price":17000},{"cat":"Lomos","name":"Lomo completo XL","desc":"Incluye fritas","price":22000},{"cat":"Lomos","name":"Lomo completo XL a la pizza","desc":"Incluye fritas","price":24000},{"cat":"Lomos","name":"Lomo gigante","desc":"Rinde 8 porciones · Incluye fritas","price":40000},{"cat":"Lomos","name":"Pizza lomo","desc":"Rinde 8 porciones · Incluye fritas","price":44000},{"cat":"Focaccia y pan","name":"Pan casero","desc":"","price":3500},{"cat":"Focaccia y pan","name":"Focaccia jamón y queso","desc":"","price":7500},{"cat":"Focaccia y pan","name":"Focaccia salame y queso","desc":"","price":7500},{"cat":"Focaccia y pan","name":"Focaccia vegetariana","desc":"","price":8000},{"cat":"Sándwiches","name":"Sándwich de pollo mechado + fritas","desc":"","price":13000},{"cat":"Sándwiches","name":"Sándwich de milanesa de pollo + fritas","desc":"","price":13000},{"cat":"Sándwiches","name":"Sándwich de bondiola + fritas","desc":"","price":15000},{"cat":"Sándwiches","name":"Sándwich de matambre de cerdo + fritas","desc":"","price":15000},{"cat":"Sándwiches","name":"Sándwich de carne mechada + fritas","desc":"","price":16000},{"cat":"Sándwiches","name":"Sándwich de milanesa de carne + fritas","desc":"","price":16000},{"cat":"Sándwiches","name":"Sándwich de vacío + fritas","desc":"","price":17000},{"cat":"Bebidas","name":"Coca-Cola lata","desc":"","price":2000},{"cat":"Bebidas","name":"Fanta lata","desc":"","price":2000},{"cat":"Bebidas","name":"Sprite lata","desc":"","price":2000},{"cat":"Bebidas","name":"Coca-Cola 1,5 L","desc":"","price":3500},{"cat":"Bebidas","name":"Fanta 1,5 L","desc":"","price":3500},{"cat":"Bebidas","name":"Sprite 1,5 L","desc":"","price":3500}];
 
-insertAtEndOfCategory("Pizzas",{
-  cat:"Pizzas",
-  name:"Pizza de pollo",
-  desc:"Cebolla caramelizada, pollo y barbacoa · A la piedra",
-  price:17000
-});
-
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Pata muslo",
-  desc:"Con fritas o ensalada",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Costeleta de cerdo",
-  desc:"Con fritas o ensalada",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Costeleta de novillo",
-  desc:"Con fritas o ensalada",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Matambre de cerdo al limón",
-  desc:"Con fritas o ensalada",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Matambre de cerdo a la pizza",
-  desc:"Con fritas o ensalada",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Vacío al plato",
-  desc:"Con fritas o ensalada",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Sorrentinos de jamón y muzzarella",
-  desc:"Con salsa boloñesa, blanca o mixta",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Sorrentinos de bondiola",
-  desc:"Con salsa boloñesa, blanca o mixta",
-  price:null
-});
-insertAtEndOfCategory("Comidas al plato",{
-  cat:"Comidas al plato",
-  name:"Canelones de verdura",
-  desc:"Con salsa boloñesa, blanca o mixta",
-  price:null
-});
-
-insertAtEndOfCategory("Empanadas",{
-  cat:"Empanadas",
-  name:"Pollo · Docena",
-  desc:"12 unidades",
-  price:16000
-});
-insertAtEndOfCategory("Empanadas",{
-  cat:"Empanadas",
-  name:"Pollo · Media docena",
-  desc:"6 unidades",
-  price:8000
-});
-insertAtEndOfCategory("Empanadas",{
-  cat:"Empanadas",
-  name:"Pollo · Unidad",
-  desc:"1 unidad",
-  price:1500
-});
-insertAtEndOfCategory("Empanadas",{
-  cat:"Empanadas",
-  name:"Bondiola a la cerveza · Docena",
-  desc:"12 unidades",
-  price:18000
-});
-insertAtEndOfCategory("Empanadas",{
-  cat:"Empanadas",
-  name:"Bondiola a la cerveza · Media docena",
-  desc:"6 unidades",
-  price:9000
-});
-insertAtEndOfCategory("Empanadas",{
-  cat:"Empanadas",
-  name:"Bondiola a la cerveza · Unidad",
-  desc:"1 unidad",
-  price:2000
-});
-
-const burgerStart=PRODUCTS.findIndex(item=>item.cat==="Hamburguesas");
-const currentBurgers=PRODUCTS.filter(item=>item.cat==="Hamburguesas");
-const preservedBurgers=currentBurgers.filter(item=>
-  ["Hamburguesa gigante","Pizza Burger"].includes(item.name)
-);
-PRODUCTS.splice(burgerStart,currentBurgers.length,
-  {cat:"Hamburguesas",name:"Simple cheddar",desc:"Medallón de carne, cebolla caramelizada y cheddar en feta · + fritas",price:7000},
-  {cat:"Hamburguesas",name:"Hamburguesa simple",desc:"Medallón de carne, lechuga y tomate · + fritas",price:6500},
-  {cat:"Hamburguesas",name:"Cheeseburger",desc:"Medallón de carne, muzzarella, queso barra y cheddar en feta · + fritas",price:10000},
-  {cat:"Hamburguesas",name:"Hamburguesa completa",desc:"Medallón de carne, lechuga, tomate, paleta jamonada, muzzarella y huevo · + fritas",price:8000},
-  {cat:"Hamburguesas",name:"Hamburguesa completa XL",desc:"Medallón de carne, lechuga, tomate, paleta jamonada, muzzarella y huevo · + fritas",price:12000},
-  {cat:"Hamburguesas",name:"Consuma doble cheddar & bacon",desc:"2 medallones de carne, doble cheddar y doble bacon · + fritas",price:12000},
-  {cat:"Hamburguesas",name:"Consuma doble cheddar & bacon XL",desc:"2 medallones de carne, doble cheddar y doble bacon · + fritas",price:15000},
-  ...preservedBurgers
-);
-
-insertAtEndOfCategory("Sándwiches",{
-  cat:"Sándwiches",
-  name:"Sándwich de vacío + fritas",
-  desc:"",
-  price:16000
-});
-
-const CATS=["Promos", "Pizzas", "Papas", "Comidas al plato", "Empanadas", "Hamburguesas", "Lomos", "Focaccia y pan", "Sándwiches"];
+const CATS=["Promos", "Hamburguesas", "Pizzas", "Papas", "Sándwiches", "Lomos", "Comidas al plato", "Empanadas", "Focaccia y pan", "Bebidas"];
 let active="Promos", cart=[];
 try{const stored=JSON.parse(localStorage.getItem("consumaCart")||"[]");cart=Array.isArray(stored)?stored:[]}catch(e){cart=[];try{localStorage.removeItem("consumaCart")}catch(_){}}
-const STANDARD_SAUCES=[
+const ADDONS=[
  {name:"Sin aderezo",price:0},
  {name:"Mayonesa",price:0},
- {name:"Ketchup",price:0},
  {name:"Mostaza",price:0},
+ {name:"Ketchup",price:0},
  {name:"Salsa golf",price:0},
- {name:"Picante",price:0}
+ {name:"Picante",price:700},
+ {name:"Barbacoa",price:700},
+ {name:"Cheddar",price:900,detail:"1 feta o ½ pote de cheddar líquido"},
+ {name:"Bacon",price:1200,detail:"1 feta"},
+ {name:"Full Bacon",price:1800,detail:"Doble bacon, bien cargado"},
+ {name:"Cheddar Lover",price:1500,detail:"2 fetas o cheddar líquido completo"}
 ];
-const BURGER_SAUCES=[
- {name:"Sin aderezo",price:0},
- {name:"Mayonesa",price:0},
- {name:"Ketchup",price:0},
- {name:"Mostaza",price:0},
- {name:"Barbacoa",price:500},
- {name:"Cebolla caramelizada",price:500},
- {name:"Cheddar",price:800},
- {name:"Bacon",price:1000},
- {name:"Alioli",price:500},
- {name:"Picante",price:500},
- {name:"Mayonesa de ajo",price:500},
- {name:"Salsa criolla",price:500}
-];
+const STANDARD_SAUCES=ADDONS;
+const BURGER_SAUCES=ADDONS;
 let deliveryMode="delivery",shippingCost=1500,shippingZone="Dentro de las 4 avenidas",gpsLink="";
 let pending=null;
 const money=n=>"$"+Number(n||0).toLocaleString("es-AR");
@@ -175,7 +40,7 @@ function addHalfPizza(name,price){
 }
 
 function add(name,price,cat=""){
- const customizable=["Hamburguesas","Lomos","Sándwiches"].includes(cat);
+ const customizable=Boolean(cat)&&!["Promos","Bebidas"].includes(cat);
  if(customizable){openModifier(name,price,cat);return}
  cart.push({name,price,mods:[],qty:1});saveCart();
 }
@@ -184,7 +49,7 @@ function openModifier(name,price,cat){
  pending={name,price,cat};
  document.getElementById("modTitle").textContent=name;
  const sauces=cat==="Hamburguesas"?BURGER_SAUCES:STANDARD_SAUCES;
- document.getElementById("sauceGrid").innerHTML=sauces.map((x,i)=>`<label class="sauceOpt"><input type="checkbox" value="${x.name}" data-price="${x.price}" onchange="toggleSauce(this)" ${i===0?"checked":""}><span>${x.name}${x.price?` · +${money(x.price)}`:""}</span></label>`).join("");
+ document.getElementById("sauceGrid").innerHTML=sauces.map((x,i)=>`<label class="sauceOpt"><input type="checkbox" value="${x.name}" data-price="${x.price}" onchange="toggleSauce(this)" ${i===0?"checked":""}><span>${x.name}${x.price?` · +${money(x.price)}`:""}${x.detail?`<small style="display:block;margin-top:4px;opacity:.75;font-size:.78rem">${x.detail}</small>`:""}</span></label>`).join("");
  document.getElementById("medallonRow").style.display=cat==="Hamburguesas"?"flex":"none";
  if(cat==="Hamburguesas"){
    const extra=/(?:\bXL\b|Hamburguesa gigante|Burger gigante|Pizza Burger|Pizzaburger)/i.test(name)?2500:2000;
@@ -331,7 +196,7 @@ nav();render();count();tick();setInterval(tick,1000);
   }
   function buildQuick(){
     if(document.querySelector(".premiumQuick")) return;
-    const names=["Promos","Pizzas","Hamburguesas","Lomos","Papas","Comidas al plato","Empanadas"];
+    const names=["Promos","Hamburguesas","Pizzas","Papas","Sándwiches","Lomos","Comidas al plato","Empanadas","Focaccia y pan","Bebidas"];
     const nav=document.createElement("nav");
     nav.className="premiumQuick";
     nav.setAttribute("aria-label","Accesos rápidos");
