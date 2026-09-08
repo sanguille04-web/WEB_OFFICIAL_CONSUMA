@@ -53,8 +53,9 @@ function addHalfPizza(name,price){
  saveCart();
 }
 
+const ADDON_CATEGORIES=new Set(["Hamburguesas","Papas","Sándwiches","Lomos"]);
 function add(name,price,cat=""){
- const customizable=Boolean(cat)&&cat!=="Bebidas";
+ const customizable=cat==="Promos"||ADDON_CATEGORIES.has(cat);
  if(customizable){openModifier(name,price,cat);return}
  cart.push({name,price,mods:[],qty:1});saveCart();
 }
