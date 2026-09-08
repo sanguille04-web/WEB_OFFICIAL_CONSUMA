@@ -74,7 +74,7 @@
 <div class="nav"><div class="navin" id="nav"></div></div></header>
 <main><div class="tools"><input id="search" placeholder="Buscar en la carta..." oninput="render()"></div><div id="content"></div></main>
 <button class="cart" aria-label="Ver pedido" onclick="openCart()">🛒 <span id="count" aria-live="polite">0</span> · Ver pedido</button>
-<div class="modal" id="modifierModal"><div class="sheet modifierSheet"><button class="xclose" onclick="closeModifier()">×</button><h2 id="modTitle">Personalizá tu pedido</h2><p class="modHint">Elegí aderezos, extras y potenciadores</p><div id="sauceGrid" class="sauceGrid"></div><label class="medallonRow" id="medallonRow"><input type="checkbox" id="extraMedallon"> <span>Agregar medallón extra</span><b id="medallonPrice">+$2.000 / XL +$2.500</b></label><button class="checkout" onclick="confirmModifier()">Agregar al carrito</button></div></div><div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="sheet orderSheet">
+<div class="modal" id="modifierModal"><div class="sheet modifierSheet"><button class="xclose" onclick="closeModifier()">×</button><h2 id="modTitle">Personalizá tu pedido</h2><p class="modHint">Elegí aderezos, extras, potenciadores o bebidas</p><div id="sauceGrid" class="sauceGrid"></div><label class="medallonRow" id="medallonRow"><input type="checkbox" id="extraMedallon"> <span>Agregar medallón extra</span><b id="medallonPrice">+$2.000 / XL +$2.500</b></label><button class="checkout" onclick="confirmModifier()">Agregar al carrito</button></div></div><div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="sheet orderSheet">
 <div class="cartTitleRow"><h2>Tu pedido</h2><button class="xclose" onclick="closeCart()">×</button></div>
 <div id="cartItems"></div>
 <p class="sauces">Los aderezos, extras y potenciadores elegidos se detallan debajo de cada producto.</p>
@@ -139,5 +139,5 @@
 <script src="./js/carrito.js" defer></script>
 <script src="./js/checkout.js" defer></script>
 <script src="./js/whatsapp.js" defer></script>
-<script src="./js/app.js?v=20260908-carta-pro" defer></script>
+<script src="./js/app.js?v=20260908-carta-pro-combo" defer></script>
 </body></html>
