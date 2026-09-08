@@ -15,6 +15,61 @@ insertAtEndOfCategory("Pizzas",{
   price:17000
 });
 
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Pata muslo",
+  desc:"Con fritas o ensalada",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Costeleta de cerdo",
+  desc:"Con fritas o ensalada",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Costeleta de novillo",
+  desc:"Con fritas o ensalada",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Matambre de cerdo al limón",
+  desc:"Con fritas o ensalada",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Matambre de cerdo a la pizza",
+  desc:"Con fritas o ensalada",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Vacío al plato",
+  desc:"Con fritas o ensalada",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Sorrentinos de jamón y muzzarella",
+  desc:"Con salsa boloñesa, blanca o mixta",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Sorrentinos de bondiola",
+  desc:"Con salsa boloñesa, blanca o mixta",
+  price:null
+});
+insertAtEndOfCategory("Comidas al plato",{
+  cat:"Comidas al plato",
+  name:"Canelones de verdura",
+  desc:"Con salsa boloñesa, blanca o mixta",
+  price:null
+});
+
 insertAtEndOfCategory("Empanadas",{
   cat:"Empanadas",
   name:"Pollo · Docena",
@@ -174,7 +229,7 @@ function render(){
    let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
-   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">PRÓXIMAMENTE</span>`}</div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
  }
  document.getElementById("content").innerHTML=blocks.join("");
 }
@@ -276,7 +331,7 @@ nav();render();count();tick();setInterval(tick,1000);
   }
   function buildQuick(){
     if(document.querySelector(".premiumQuick")) return;
-    const names=["Promos","Pizzas","Hamburguesas","Lomos","Papas","Empanadas"];
+    const names=["Promos","Pizzas","Hamburguesas","Lomos","Papas","Comidas al plato","Empanadas"];
     const nav=document.createElement("nav");
     nav.className="premiumQuick";
     nav.setAttribute("aria-label","Accesos rápidos");
