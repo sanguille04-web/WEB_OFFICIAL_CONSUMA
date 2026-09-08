@@ -54,6 +54,7 @@ function addHalfPizza(name,price){
 }
 
 const ADDON_CATEGORIES=new Set(["Hamburguesas","Papas","Sándwiches","Lomos"]);
+const MEDALLON_CATEGORIES=new Set(["Hamburguesas","Sándwiches","Lomos"]);
 function add(name,price,cat=""){
  const customizable=cat==="Promos"||ADDON_CATEGORIES.has(cat);
  if(customizable){openModifier(name,price,cat);return}
@@ -71,9 +72,9 @@ function openModifier(name,price,cat){
  const inputType=comboMode?"radio":"checkbox";
  const inputGroup=comboMode?' name="comboDrink"':"";
  document.getElementById("sauceGrid").innerHTML=sauces.map((x,i)=>`<label class="sauceOpt"><input type="${inputType}"${inputGroup} value="${x.name}" data-price="${x.price}" onchange="toggleSauce(this)" ${i===0?"checked":""}><span>${x.name}${x.price?` · +${money(x.price)}`:""}${x.detail?`<small style="display:block;margin-top:4px;opacity:.75;font-size:.78rem">${x.detail}</small>`:""}</span></label>`).join("");
- document.getElementById("medallonRow").style.display=cat==="Hamburguesas"?"flex":"none";
- if(cat==="Hamburguesas"){
-   const extra=/(?:\bXL\b|Hamburguesa gigante|Burger gigante|Pizza Burger|Pizzaburger)/i.test(name)?2500:2000;
+ document.getElementById("medallonRow").style.display=MEDALLON_CATEGORIES.has(cat)?"flex":"none";
+ if(MEDALLON_CATEGORIES.has(cat)){
+   const extra=/(?:\bXL\b|\bgigante\b|Pizza Burger|Pizza lomo|Pizzaburger)/i.test(name)?2500:2000;
    const mp=document.getElementById("medallonPrice");if(mp)mp.textContent="+"+money(extra);
  }
  document.getElementById("extraMedallon").checked=false;
@@ -98,8 +99,8 @@ function confirmModifier(){
  }));
  let mods=selected.map(item=>item.price?`${item.name} +${money(item.price)}`:item.name);
  let price=pending.price+selected.reduce((total,item)=>total+item.price,0);
- if(pending.cat==="Hamburguesas"&&document.getElementById("extraMedallon").checked){
- const extra=/(?:\bXL\b|Hamburguesa gigante|Burger gigante|Pizza Burger|Pizzaburger)/i.test(pending.name)?2500:2000;
+ if(MEDALLON_CATEGORIES.has(pending.cat)&&document.getElementById("extraMedallon").checked){
+ const extra=/(?:\bXL\b|\bgigante\b|Pizza Burger|Pizza lomo|Pizzaburger)/i.test(pending.name)?2500:2000;
  price+=extra;mods.push("Medallón extra +"+money(extra));
 }
  cart.push({name:pending.name,price,mods,qty:1});saveCart();closeModifier();
