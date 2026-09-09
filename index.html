@@ -4,6 +4,19 @@
 <title>CONSUMA · Cocina</title>
 <meta name="theme-color" content="#080808">
 <meta name="description" content="CONSUMA · Cocina — pizzas, hamburguesas, lomos, empanadas, focaccias y pedidos online en San Luis.">
+<link rel="canonical" href="https://web-official-consuma.vercel.app/">
+<link rel="icon" type="image/webp" href="./assets/generated/d6634bc2acb4185f.webp">
+<link rel="preload" as="image" href="./assets/generated/2c86e5406bf83c5c.webp" fetchpriority="high">
+<meta property="og:locale" content="es_AR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CONSUMA · Almacén y Casa de Comidas">
+<meta property="og:description" content="Pizzas, hamburguesas, lomos, empanadas y pedidos online en San Luis.">
+<meta property="og:url" content="https://web-official-consuma.vercel.app/">
+<meta property="og:image" content="https://web-official-consuma.vercel.app/assets/generated/d6634bc2acb4185f.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"CONSUMA · Almacén y Casa de Comidas","url":"https://web-official-consuma.vercel.app/","image":"https://web-official-consuma.vercel.app/assets/generated/d6634bc2acb4185f.webp","servesCuisine":["Pizzas","Hamburguesas","Lomos","Empanadas","Comida casera"],"address":{"@type":"PostalAddress","streetAddress":"Av. Juan Gilberto Funes 945","addressLocality":"San Luis","addressRegion":"San Luis","addressCountry":"AR"},"sameAs":["https://www.instagram.com/consuma.ok/"]}
+</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
@@ -61,7 +74,7 @@
 
 
 <link rel="stylesheet" href="./css/base.css">
-<link rel="stylesheet" href="./css/checkout.css?v=20260909-medallon-solo-hamburguesas">
+<link rel="stylesheet" href="./css/checkout.css?v=20260909-auditoria-100">
 <link rel="stylesheet" href="./css/responsive.css">
 </head>
 <body>
@@ -72,7 +85,7 @@
 </div></div>
 <div class="modes"><div><div class="mode active">🍳 COCINA</div><div class="mode">🛒 ALMACÉN</div></div></div>
 <div class="nav"><div class="navin" id="nav"></div></div></header>
-<main><div class="tools"><input id="search" placeholder="Buscar en la carta..." oninput="render()"></div><div id="content"></div></main>
+<main><h1 class="sr-only">CONSUMA · Almacén y Casa de Comidas en San Luis</h1><div class="tools"><input id="search" placeholder="Buscar en la carta..." oninput="scheduleRender()" autocomplete="off" enterkeyhint="search" aria-label="Buscar productos"></div><div id="content"></div></main>
 <button class="cart" aria-label="Ver pedido" onclick="openCart()">🛒 <span id="count" aria-live="polite">0</span> · Ver pedido</button>
 <div class="modal" id="modifierModal"><div class="sheet modifierSheet"><button class="xclose" onclick="closeModifier()">×</button><h2 id="modTitle">Personalizá tu pedido</h2><p class="modHint">Elegí aderezos, extras, potenciadores o bebidas</p><div id="sauceGrid" class="sauceGrid"></div><label class="medallonRow" id="medallonRow"><input type="checkbox" id="extraMedallon"> <span>Agregar medallón extra</span><b id="medallonPrice">+$2.000 / XL +$2.500</b></label><button class="checkout" onclick="confirmModifier()">Agregar al carrito</button></div></div><div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="sheet orderSheet">
 <div class="cartTitleRow"><h2>Tu pedido</h2><button class="xclose" onclick="closeCart()">×</button></div>
@@ -139,5 +152,5 @@
 <script src="./js/carrito.js" defer></script>
 <script src="./js/checkout.js" defer></script>
 <script src="./js/whatsapp.js" defer></script>
-<script src="./js/app.js?v=20260909-promos-orden-1-a-8" defer></script>
+<script src="./js/app.js?v=20260909-auditoria-100" defer></script>
 </body></html>
