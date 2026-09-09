@@ -123,6 +123,7 @@ function render(){
    blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
  }
  document.getElementById("content").innerHTML=blocks.join("");
+ bindAddButtons();
 }
 function openCart(){
  const saucesNote=document.querySelector("#modal .sauces");
@@ -197,47 +198,40 @@ function sendWA(){
 }
 function tick(){let d=new Date();document.getElementById("time").textContent=d.toLocaleTimeString("es-AR",{hour12:false});let h=d.getHours();document.getElementById("status").textContent=(h>=9)?"ABIERTO":"CERRADO"}
 
-function stopInlineEvent(event){
- event.preventDefault();
- event.stopPropagation();
- if(typeof event.stopImmediatePropagation==="function")event.stopImmediatePropagation();
+function bindAddButtons(){
+ document.querySelectorAll("button.add").forEach(button=>{
+   button.removeAttribute("onclick");
+   button.onclick=()=>{
+     const card=button.closest("article.card");
+     const itemName=card?.querySelector("h3")?.textContent?.trim()||"";
+     const isPromo=Boolean(card?.classList.contains("promo"));
+     const item=(isPromo?PROMOS:PRODUCTS).find(x=>x.name===itemName);
+     if(item)add(item.name,item.price,isPromo?"Promos":item.cat);
+   };
+ });
 }
-document.addEventListener("click",event=>{
- const target=event.target;
- if(!(target instanceof Element))return;
- const addButton=target.closest("button.add");
- if(addButton){
-   const card=addButton.closest("article.card");
-   const itemName=card?.querySelector("h3")?.textContent?.trim()||"";
-   const isPromo=Boolean(card?.classList.contains("promo"));
-   const item=(isPromo?PROMOS:PRODUCTS).find(x=>x.name===itemName);
-   if(!item)return;
-   stopInlineEvent(event);
-   add(item.name,item.price,isPromo?"Promos":item.cat);
-   return;
+function bindModifierControls(){
+ const closeButton=document.querySelector("#modifierModal .xclose");
+ if(closeButton){
+   closeButton.removeAttribute("onclick");
+   closeButton.onclick=closeModifier;
  }
- const modifierClose=target.closest("#modifierModal .xclose");
- if(modifierClose){
-   stopInlineEvent(event);
-   closeModifier();
-   return;
+ const confirmButton=document.querySelector("#modifierModal .checkout");
+ if(confirmButton){
+   confirmButton.removeAttribute("onclick");
+   confirmButton.onclick=confirmModifier;
  }
- const modifierConfirm=target.closest("#modifierModal .checkout");
- if(modifierConfirm){
-   stopInlineEvent(event);
-   confirmModifier();
+ const sauceGrid=document.getElementById("sauceGrid");
+ if(sauceGrid){
+   sauceGrid.onchange=event=>{
+     const input=event.target;
+     if(input instanceof HTMLInputElement)toggleSauce(input);
+   };
  }
-},true);
-document.addEventListener("change",event=>{
- const target=event.target;
- if(!(target instanceof Element)||!target.matches("#sauceGrid input"))return;
- event.stopPropagation();
- if(typeof event.stopImmediatePropagation==="function")event.stopImmediatePropagation();
- toggleSauce(target);
-},true);
+}
 
 cart=cart.map(x=>({...x,qty:x.qty||1,mods:x.mods||[]}));
-nav();render();count();tick();setInterval(tick,1000);
+nav();render();bindModifierControls();count();tick();setInterval(tick,1000);
 
 
 /* ---- original runtime block ---- */
