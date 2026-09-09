@@ -1271,3 +1271,7 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
   #modal #cartItems .ci > span{grid-area:price!important;justify-self:end!important}
   #modal #cartItems .remove{grid-area:remove!important;justify-self:end!important}
 }
+/* El medallón extra se muestra únicamente cuando JavaScript lo habilita. */
+#modifierModal #medallonRow[style*="display: none"]{
+  display:none!important;
+}
