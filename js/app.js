@@ -55,7 +55,7 @@ function addHalfPizza(name,price){
 }
 
 const ADDON_CATEGORIES=new Set(["Hamburguesas","Papas","Sándwiches","Lomos"]);
-const MEDALLON_CATEGORIES=new Set(["Hamburguesas","Sándwiches","Lomos"]);
+const MEDALLON_CATEGORIES=new Set(["Hamburguesas"]);
 const CRIOLLA_CATEGORIES=new Set(["Hamburguesas","Sándwiches","Lomos"]);
 function add(name,price,cat=""){
  const customizable=cat==="Promos"||ADDON_CATEGORIES.has(cat);
