@@ -1311,6 +1311,11 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
   -webkit-text-fill-color:#E6E6E6!important;
   opacity:1!important;
 }
+#sec-promos .card.promo .pbg picture{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+}
 #sec-promos .card.promo .pbg img{
   display:block!important;
   width:100%!important;
