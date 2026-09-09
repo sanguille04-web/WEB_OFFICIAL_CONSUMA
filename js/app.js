@@ -196,6 +196,46 @@ function sendWA(){
  if(!waWin){ window.location.href=waUrl; }
 }
 function tick(){let d=new Date();document.getElementById("time").textContent=d.toLocaleTimeString("es-AR",{hour12:false});let h=d.getHours();document.getElementById("status").textContent=(h>=9)?"ABIERTO":"CERRADO"}
+
+function stopInlineEvent(event){
+ event.preventDefault();
+ event.stopPropagation();
+ if(typeof event.stopImmediatePropagation==="function")event.stopImmediatePropagation();
+}
+document.addEventListener("click",event=>{
+ const target=event.target;
+ if(!(target instanceof Element))return;
+ const addButton=target.closest("button.add");
+ if(addButton){
+   const card=addButton.closest("article.card");
+   const itemName=card?.querySelector("h3")?.textContent?.trim()||"";
+   const isPromo=Boolean(card?.classList.contains("promo"));
+   const item=(isPromo?PROMOS:PRODUCTS).find(x=>x.name===itemName);
+   if(!item)return;
+   stopInlineEvent(event);
+   add(item.name,item.price,isPromo?"Promos":item.cat);
+   return;
+ }
+ const modifierClose=target.closest("#modifierModal .xclose");
+ if(modifierClose){
+   stopInlineEvent(event);
+   closeModifier();
+   return;
+ }
+ const modifierConfirm=target.closest("#modifierModal .checkout");
+ if(modifierConfirm){
+   stopInlineEvent(event);
+   confirmModifier();
+ }
+},true);
+document.addEventListener("change",event=>{
+ const target=event.target;
+ if(!(target instanceof Element)||!target.matches("#sauceGrid input"))return;
+ event.stopPropagation();
+ if(typeof event.stopImmediatePropagation==="function")event.stopImmediatePropagation();
+ toggleSauce(target);
+},true);
+
 cart=cart.map(x=>({...x,qty:x.qty||1,mods:x.mods||[]}));
 nav();render();count();tick();setInterval(tick,1000);
 
