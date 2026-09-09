@@ -110,12 +110,17 @@ function confirmModifier(){
  cart.push({name:pending.name,price,mods,qty:1});saveCart();closeModifier();
 }
 function count(){document.getElementById("count").textContent=cart.length}
+let renderTimer;
+function scheduleRender(){
+ clearTimeout(renderTimer);
+ renderTimer=setTimeout(render,120);
+}
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim();
  let blocks=[];
  const pp=PROMOS.filter(x=>(x.name+" "+(x.desc||"")+" "+(x.label||"")+" "+(x.note||"")).toLowerCase().includes(q));
  if(pp.length){
-   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promociones y combos</h2><div class="goldline"></div><p class="desc">Las promociones no incluyen bebidas. El Combo Consuma sí incluye una gaseosa de 500 ml.</p><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}"${x.img?` style="background-image:url('${x.img}');${x.fit==="contain"?"background-size:contain;background-repeat:no-repeat;background-position:center;":""}"`:""}></div><div class="pcontent"><span class="pill">${x.label||`Promo ${x.n}`}</span><h3>${x.name}</h3>${x.desc?`<div class="desc">${x.desc}</div>`:""}${x.note?`<div class="desc">${x.note}</div>`:""}<div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promociones y combos</h2><div class="goldline"></div><p class="desc">Las promociones no incluyen bebidas. El Combo Consuma sí incluye una gaseosa de 500 ml.</p><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}">${x.img?`<img src="${x.img}" alt="" width="1024" height="1536" loading="${x.n===1?"eager":"lazy"}" decoding="async"${x.n===1?` fetchpriority="high"`:""}>`:""}</div><div class="pcontent"><span class="pill">${x.label||`Promo ${x.n}`}</span><h3>${x.name}</h3>${x.desc?`<div class="desc">${x.desc}</div>`:""}${x.note?`<div class="desc">${x.note}</div>`:""}<div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
  }
  for(const cat of CATS.filter(c=>c!=="Promos")){
    let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
@@ -308,19 +313,8 @@ nav();render();bindModifierControls();count();tick();setInterval(tick,1000);
 })();
 
 
-/* ---- original runtime block ---- */
-
-(function(){
-  function setVH(){
-    document.documentElement.style.setProperty("--consuma-vh",(window.innerHeight*.01)+"px");
-  }
-  setVH();
-  window.addEventListener("resize",setVH,{passive:true});
-  window.addEventListener("orientationchange",function(){setTimeout(setVH,120)},{passive:true});
-  document.querySelectorAll("button,a,input,select,textarea").forEach(function(el){
-    if(!el.hasAttribute("tabindex") && (el.tagName==="BUTTON"||el.tagName==="A")) el.tabIndex=0;
-  });
-})();
+/* Auditoría 2026-09-09: se retiró el ajuste JS de viewport.
+   CSS ya usa unidades dvh y los controles nativos ya son accesibles por teclado. */
 
 
 /* ---- original runtime block ---- */
