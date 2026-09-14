@@ -40,12 +40,12 @@ let deliveryMode="delivery",shippingCost=1500,shippingZone="Dentro de las 4 aven
 let pending=null;
 const money=n=>"$"+Number(n||0).toLocaleString("es-AR");
 const QUICK_WHATSAPP="542664576554";
-function quickWhatsAppLink(name,price){
- const message=["Hola! Quiero pedir 👇","",`• 1 × ${name} → ${money(price)}`,"","Dirección o retiro:","Forma de pago:","Aclaraciones:"].join("\n");
+function quickWhatsAppLink(category){
+ const message=["Hola! Quiero hacer un pedido de Consuma 👋","",`Estoy viendo la categoría: ${category}.`,"","¿Me ayudan a elegir y completar el pedido?"].join("\n");
  return `https://wa.me/${QUICK_WHATSAPP}?text=${encodeURIComponent(message)}`;
 }
-function quickWhatsAppButton(name,price){
- return `<a class="quickOrder" href="${quickWhatsAppLink(name,price)}" target="_blank" rel="noopener noreferrer" aria-label="Pedir por WhatsApp">Pedir aquí</a>`;
+function quickWhatsAppButton(category){
+ return `<a class="quickOrder" href="${quickWhatsAppLink(category)}" target="_blank" rel="noopener noreferrer" aria-label="Pedir ${category} por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a12.6 12.6 0 0 0-10.8 19.1L3.5 28.5l6.6-1.7A12.7 12.7 0 1 0 16 3Zm0 22.9c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1.1-3.8-.3-.4A10.3 10.3 0 1 1 16 25.9Zm5.7-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.5.9-1.8.1-.2 0-.4 0-.6l-1-2.5c-.3-.6-.6-.5-.9-.5h-.7c-.2 0-.6.1-1 .5-1.1 1.2-1.5 2.7-1.1 4.3.5 2.4 2.2 4.6 4.3 6.1 2.4 1.8 5.7 2.8 7.6 2 .8-.3 1.7-1.3 1.9-2.2.2-.8.2-1.5.1-1.7-.2-.2-.5-.3-.8-.5Z"/></svg><span>Pedir aquí</span></a>`;
 }
 function nav(){
  document.getElementById("nav").innerHTML=CATS.map(c=>`<button data-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
@@ -135,13 +135,13 @@ function render(){
  let blocks=[];
  const pp=PROMOS.filter(x=>(x.name+" "+(x.desc||"")+" "+(x.label||"")+" "+(x.note||"")).toLowerCase().includes(q));
  if(pp.length){
-   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promociones y combos</h2><div class="goldline"></div><p class="desc">Las promociones no incluyen bebidas. El Combo Consuma sí incluye una gaseosa de 500 ml.</p><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}">${promoMedia(x)}</div><div class="pcontent"><span class="pill">${x.label||`Promo ${x.n}`}</span><h3>${x.name}</h3>${x.desc?`<div class="desc">${x.desc}</div>`:""}${x.note?`<div class="desc">${x.note}</div>`:""}<div class="row"><span class="price">${money(x.price)}</span>${quickWhatsAppButton(x.name,x.price)}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><div class="sectionTitle"><h2>Promociones y combos</h2>${quickWhatsAppButton("Promociones y combos")}</div><div class="goldline"></div><p class="desc">Las promociones no incluyen bebidas. El Combo Consuma sí incluye una gaseosa de 500 ml.</p><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}">${promoMedia(x)}</div><div class="pcontent"><span class="pill">${x.label||`Promo ${x.n}`}</span><h3>${x.name}</h3>${x.desc?`<div class="desc">${x.desc}</div>`:""}${x.note?`<div class="desc">${x.note}</div>`:""}<div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
  }
  for(const cat of CATS.filter(c=>c!=="Promos")){
    let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
-   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}${quickWhatsAppButton(x.name,x.price)}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><div class="sectionTitle"><h2>${cat}</h2>${quickWhatsAppButton(cat)}</div><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
  }
  document.getElementById("content").innerHTML=blocks.join("");
  bindAddButtons();
