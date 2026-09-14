@@ -45,7 +45,32 @@ function quickWhatsAppLink(category){
  return `https://wa.me/${QUICK_WHATSAPP}?text=${encodeURIComponent(message)}`;
 }
 function quickWhatsAppButton(category){
- return `<a class="quickOrder" href="${quickWhatsAppLink(category)}" target="_blank" rel="noopener noreferrer" aria-label="Pedir ${category} por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a12.6 12.6 0 0 0-10.8 19.1L3.5 28.5l6.6-1.7A12.7 12.7 0 1 0 16 3Zm0 22.9c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1.1-3.8-.3-.4A10.3 10.3 0 1 1 16 25.9Zm5.7-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.5.9-1.8.1-.2 0-.4 0-.6l-1-2.5c-.3-.6-.6-.5-.9-.5h-.7c-.2 0-.6.1-1 .5-1.1 1.2-1.5 2.7-1.1 4.3.5 2.4 2.2 4.6 4.3 6.1 2.4 1.8 5.7 2.8 7.6 2 .8-.3 1.7-1.3 1.9-2.2.2-.8.2-1.5.1-1.7-.2-.2-.5-.3-.8-.5Z"/></svg><span>Pedir aquí</span></a>`;
+ return `<button class="quickOrder" type="button" onclick="openQuickOrder('${category.replaceAll("'","\\'")}')" aria-label="Pedir ${category} por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a12.6 12.6 0 0 0-10.8 19.1L3.5 28.5l6.6-1.7A12.7 12.7 0 1 0 16 3Zm0 22.9c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1.1-3.8-.3-.4A10.3 10.3 0 1 1 16 25.9Zm5.7-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.5.9-1.8.1-.2 0-.4 0-.6l-1-2.5c-.3-.6-.6-.5-.9-.5h-.7c-.2 0-.6.1-1 .5-1.1 1.2-1.5 2.7-1.1 4.3.5 2.4 2.2 4.6 4.3 6.1 2.4 1.8 5.7 2.8 7.6 2 .8-.3 1.7-1.3 1.9-2.2.2-.8.2-1.5.1-1.7-.2-.2-.5-.3-.8-.5Z"/></svg><span>Pedir aquí</span></button>`;
+}
+let quickCategoryName="";
+function openQuickOrder(category){
+ quickCategoryName=category;
+ document.getElementById("quickCategory").textContent=category;
+ document.getElementById("quickError").classList.remove("show");
+ document.getElementById("quickOrderModal").classList.add("open");
+ setTimeout(()=>document.getElementById("quickItems").focus(),50);
+}
+function closeQuickOrder(){document.getElementById("quickOrderModal").classList.remove("open")}
+function sendQuickWhatsApp(){
+ const items=document.getElementById("quickItems").value.trim();
+ const address=document.getElementById("quickAddress").value.trim();
+ const payment=document.getElementById("quickPayment").value;
+ const note=document.getElementById("quickNote").value.trim();
+ const err=document.getElementById("quickError");
+ const missing=[];
+ if(!items)missing.push("Escribí qué querés pedir o agregar.");
+ if(!address)missing.push("Ingresá la dirección o escribí Retiro.");
+ if(!payment)missing.push("Elegí la forma de pago.");
+ if(missing.length){err.innerHTML=missing.join("<br>");err.classList.add("show");return}
+ const message=["Hola! Quiero pedir 👇","",`Categoría: ${quickCategoryName}`,`Pedido: ${items}`,"",`Dirección o retiro: ${address}`,`Forma de pago: ${payment}`,`Aclaraciones / observaciones: ${note||"Sin aclaraciones"}`].join("\n");
+ const url=`https://wa.me/${QUICK_WHATSAPP}?text=${encodeURIComponent(message)}`;
+ const win=window.open(url,"_blank","noopener,noreferrer");
+ if(!win)window.location.href=url;
 }
 function nav(){
  document.getElementById("nav").innerHTML=CATS.map(c=>`<button data-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
