@@ -1325,13 +1325,20 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
 }
 
 
-/* Pedido directo por WhatsApp en cada producto */
+/* Pedido directo por WhatsApp: uno por categoría, sin invadir los productos */
+.sectionTitle{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ margin:22px 0 12px;
+}
+.sectionTitle h2{margin:0}
 .quickOrder{
  display:inline-flex;
  align-items:center;
  justify-content:center;
  min-height:44px;
- margin-left:auto;
  padding:9px 14px;
  border:2px solid #111;
  border-radius:999px;
@@ -1344,17 +1351,12 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
  white-space:nowrap;
  box-shadow:0 5px 14px rgba(0,0,0,.16);
 }
+.quickOrder svg{width:20px;height:20px;flex:none;margin-right:7px}
 .quickOrder:hover,.quickOrder:focus-visible{
  background:#F2C632;
  color:#080808;
  outline:3px solid rgba(242,198,50,.3);
  outline-offset:2px;
-}
-.quickOrder + .add{margin-left:0}
-#sec-promos .quickOrder{
- background:#F2C632;
- color:#080808;
- border-color:#F6DD79;
 }
 .product .halfBtn{
  order:4;
@@ -1364,6 +1366,9 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
 @media(max-width:520px){
  .product .row{flex-wrap:wrap}
  .product .price{flex:1 1 auto}
- .quickOrder{padding:9px 12px;font-size:12px}
+ .sectionTitle{align-items:center;gap:8px}
+ .sectionTitle h2{font-size:23px}
+ .quickOrder{padding:9px 11px;font-size:12px}
+ .quickOrder svg{width:19px;height:19px;margin-right:5px}
  .product .add{margin-left:0}
 }
