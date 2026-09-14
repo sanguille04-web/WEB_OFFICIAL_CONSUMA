@@ -39,6 +39,14 @@ const COMBO_DRINKS=[
 let deliveryMode="delivery",shippingCost=1500,shippingZone="Dentro de las 4 avenidas",gpsLink="";
 let pending=null;
 const money=n=>"$"+Number(n||0).toLocaleString("es-AR");
+const QUICK_WHATSAPP="542664576554";
+function quickWhatsAppLink(name,price){
+ const message=["Hola! Quiero pedir 👇","",`• 1 × ${name} → ${money(price)}`,"","Dirección o retiro:","Forma de pago:","Aclaraciones:"].join("\n");
+ return `https://wa.me/${QUICK_WHATSAPP}?text=${encodeURIComponent(message)}`;
+}
+function quickWhatsAppButton(name,price){
+ return `<a class="quickOrder" href="${quickWhatsAppLink(name,price)}" target="_blank" rel="noopener noreferrer" aria-label="Pedir por WhatsApp">Pedir aquí</a>`;
+}
 function nav(){
  document.getElementById("nav").innerHTML=CATS.map(c=>`<button data-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
 }
@@ -127,13 +135,13 @@ function render(){
  let blocks=[];
  const pp=PROMOS.filter(x=>(x.name+" "+(x.desc||"")+" "+(x.label||"")+" "+(x.note||"")).toLowerCase().includes(q));
  if(pp.length){
-   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promociones y combos</h2><div class="goldline"></div><p class="desc">Las promociones no incluyen bebidas. El Combo Consuma sí incluye una gaseosa de 500 ml.</p><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}">${promoMedia(x)}</div><div class="pcontent"><span class="pill">${x.label||`Promo ${x.n}`}</span><h3>${x.name}</h3>${x.desc?`<div class="desc">${x.desc}</div>`:""}${x.note?`<div class="desc">${x.note}</div>`:""}<div class="row"><span class="price">${money(x.price)}</span><button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug("Promos")}" class="menuSection"><h2>Promociones y combos</h2><div class="goldline"></div><p class="desc">Las promociones no incluyen bebidas. El Combo Consuma sí incluye una gaseosa de 500 ml.</p><div class="grid">${pp.map(x=>`<article class="card promo"><div class="pbg promo-bg-${x.n}">${promoMedia(x)}</div><div class="pcontent"><span class="pill">${x.label||`Promo ${x.n}`}</span><h3>${x.name}</h3>${x.desc?`<div class="desc">${x.desc}</div>`:""}${x.note?`<div class="desc">${x.note}</div>`:""}<div class="row"><span class="price">${money(x.price)}</span>${quickWhatsAppButton(x.name,x.price)}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'Promos')">+</button></div></div></article>`).join("")}</div></section>`);
  }
  for(const cat of CATS.filter(c=>c!=="Promos")){
    let a=PRODUCTS.filter(x=>x.cat===cat && (x.name+" "+x.desc).toLowerCase().includes(q));
    a.sort((a,b)=>(a.price===null)-(b.price===null));
    if(!a.length)continue;
-   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
+   blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><h2>${cat}</h2><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}${quickWhatsAppButton(x.name,x.price)}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
  }
  document.getElementById("content").innerHTML=blocks.join("");
  bindAddButtons();
