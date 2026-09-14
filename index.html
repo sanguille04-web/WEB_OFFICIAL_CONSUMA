@@ -87,6 +87,17 @@
 <div class="nav"><div class="navin" id="nav"></div></div></header>
 <main><h1 class="sr-only">CONSUMA · Almacén y Casa de Comidas en San Luis</h1><div class="tools"><input id="search" placeholder="Buscar en la carta..." oninput="scheduleRender()" autocomplete="off" enterkeyhint="search" aria-label="Buscar productos"></div><div id="content"></div></main>
 <button class="cart" aria-label="Ver pedido" onclick="openCart()">🛒 <span id="count" aria-live="polite">0</span> · Ver pedido</button>
+<div class="modal" id="quickOrderModal" onclick="if(event.target===this)closeQuickOrder()"><div class="sheet quickOrderSheet">
+<button class="xclose" type="button" onclick="closeQuickOrder()" aria-label="Cerrar">×</button>
+<div class="quickOrderTitle"><span class="quickWaLogo" aria-hidden="true"><svg viewBox="0 0 32 32"><path fill="currentColor" d="M16 3a12.6 12.6 0 0 0-10.8 19.1L3.5 28.5l6.6-1.7A12.7 12.7 0 1 0 16 3Zm0 22.9c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1.1-3.8-.3-.4A10.3 10.3 0 1 1 16 25.9Zm5.7-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.5.9-1.8.1-.2 0-.4 0-.6l-1-2.5c-.3-.6-.6-.5-.9-.5h-.7c-.2 0-.6.1-1 .5-1.1 1.2-1.5 2.7-1.1 4.3.5 2.4 2.2 4.6 4.3 6.1 2.4 1.8 5.7 2.8 7.6 2 .8-.3 1.7-1.3 1.9-2.2.2-.8.2-1.5.1-1.7-.2-.2-.5-.3-.8-.5Z"/></svg></span><div><h2>Pedido rápido</h2><p id="quickCategory"></p></div></div>
+<div class="quickForm">
+<label><span>¿QUÉ QUERÉS PEDIR O AGREGAR? *</span><textarea id="quickItems" placeholder="Ej.: 2 hamburguesas completas, una sin mayonesa y agregar cheddar"></textarea></label>
+<label><span>DIRECCIÓN O RETIRO *</span><input id="quickAddress" placeholder="Dirección completa o escribí Retiro"></label>
+<label><span>FORMA DE PAGO *</span><select id="quickPayment"><option value="">Elegir</option><option>Efectivo</option><option>Transferencia</option></select></label>
+<label><span>ACLARACIONES / OBSERVACIONES</span><textarea id="quickNote" placeholder="Aderezos, salsas, extras o cualquier detalle"></textarea></label>
+<div id="quickError" class="formError"></div>
+<button class="quickSend" type="button" onclick="sendQuickWhatsApp()"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a12.6 12.6 0 0 0-10.8 19.1L3.5 28.5l6.6-1.7A12.7 12.7 0 1 0 16 3Zm0 22.9c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1.1-3.8-.3-.4A10.3 10.3 0 1 1 16 25.9Zm5.7-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.5.9-1.8.1-.2 0-.4 0-.6l-1-2.5c-.3-.6-.6-.5-.9-.5h-.7c-.2 0-.6.1-1 .5-1.1 1.2-1.5 2.7-1.1 4.3.5 2.4 2.2 4.6 4.3 6.1 2.4 1.8 5.7 2.8 7.6 2 .8-.3 1.7-1.3 1.9-2.2.2-.8.2-1.5.1-1.7-.2-.2-.5-.3-.8-.5Z"/></svg>ENVIAR PEDIDO POR WHATSAPP</button>
+</div></div></div>
 <div class="modal" id="modifierModal"><div class="sheet modifierSheet"><button class="xclose" onclick="closeModifier()">×</button><h2 id="modTitle">Personalizá tu pedido</h2><p class="modHint">Elegí aderezos, extras, potenciadores o bebidas</p><div id="sauceGrid" class="sauceGrid"></div><label class="medallonRow" id="medallonRow"><input type="checkbox" id="extraMedallon"> <span>Agregar medallón extra</span><b id="medallonPrice">+$2.000 / XL +$2.500</b></label><button class="checkout" onclick="confirmModifier()">Agregar al carrito</button></div></div><div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="sheet orderSheet">
 <div class="cartTitleRow"><h2>Tu pedido</h2><button class="xclose" onclick="closeCart()">×</button></div>
 <div id="cartItems"></div>
