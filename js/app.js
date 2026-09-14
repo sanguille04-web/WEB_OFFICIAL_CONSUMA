@@ -41,7 +41,7 @@ let pending=null;
 const money=n=>"$"+Number(n||0).toLocaleString("es-AR");
 const QUICK_WHATSAPP="542664576554";
 function quickWhatsAppLink(category){
- const message=["Hola! Quiero pedir 👇","",`Categoría: ${category}`,"", "Pedido / agregados:","Dirección o retiro:","Forma de pago:","Aclaraciones / aderezos:"].join("\n");
+ const message=["Hola! Quiero pedir 👇","","Pedido : ","Dirección o retiro:","Forma de pago:","Observacion:"].join("\n");
  return `https://wa.me/${QUICK_WHATSAPP}?text=${encodeURIComponent(message)}`;
 }
 function quickWhatsAppButton(category){
