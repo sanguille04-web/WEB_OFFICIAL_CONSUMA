@@ -1323,3 +1323,47 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
   object-fit:contain!important;
   object-position:center center!important;
 }
+
+
+/* Pedido directo por WhatsApp en cada producto */
+.quickOrder{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:44px;
+ margin-left:auto;
+ padding:9px 14px;
+ border:2px solid #111;
+ border-radius:999px;
+ background:#111;
+ color:#F2C632;
+ font-size:13px;
+ font-weight:950;
+ line-height:1;
+ text-decoration:none;
+ white-space:nowrap;
+ box-shadow:0 5px 14px rgba(0,0,0,.16);
+}
+.quickOrder:hover,.quickOrder:focus-visible{
+ background:#F2C632;
+ color:#080808;
+ outline:3px solid rgba(242,198,50,.3);
+ outline-offset:2px;
+}
+.quickOrder + .add{margin-left:0}
+#sec-promos .quickOrder{
+ background:#F2C632;
+ color:#080808;
+ border-color:#F6DD79;
+}
+.product .halfBtn{
+ order:4;
+ width:100%;
+ margin-top:4px;
+}
+@media(max-width:520px){
+ .product .row{flex-wrap:wrap}
+ .product .price{flex:1 1 auto}
+ .quickOrder{padding:9px 12px;font-size:12px}
+ .product .add{margin-left:0}
+}
