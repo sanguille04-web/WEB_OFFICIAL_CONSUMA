@@ -1350,6 +1350,7 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
  text-decoration:none;
  white-space:nowrap;
  box-shadow:0 5px 14px rgba(0,0,0,.16);
+ cursor:pointer;
 }
 .quickOrder svg{width:20px;height:20px;flex:none;margin-right:7px}
 .quickOrder:hover,.quickOrder:focus-visible{
@@ -1358,6 +1359,22 @@ button[onclick*="half" i] strong,button[onclick*="mitad" i] strong{
  outline:3px solid rgba(242,198,50,.3);
  outline-offset:2px;
 }
+
+/* Formulario corto para pedido directo por categoría */
+.quickOrderSheet{position:relative;background:#F7F3E9!important;color:#111;max-width:560px}
+.quickOrderTitle{display:flex;align-items:center;gap:12px;margin:0 42px 16px 0}
+.quickOrderTitle h2{margin:0 0 3px;font-size:24px}
+.quickOrderTitle p{margin:0;color:#645f54;font-weight:800}
+.quickWaLogo{width:48px;height:48px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#25D366;color:#fff}
+.quickWaLogo svg{width:30px;height:30px}
+.quickForm{display:grid;gap:12px}
+.quickForm label{display:grid;gap:6px}
+.quickForm label>span{font-size:12px;font-weight:900;color:#3b382f}
+.quickForm input,.quickForm select,.quickForm textarea{width:100%;border:1.5px solid #b8aa8c;border-radius:12px;background:#fff;color:#111;padding:12px;font-size:16px}
+.quickForm textarea{min-height:76px;resize:vertical}
+.quickSend{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:52px;border:0;border-radius:13px;background:#25D366;color:#fff;font-weight:950;cursor:pointer}
+.quickSend svg{width:25px;height:25px}
+@media(max-width:620px){.quickOrderSheet{max-height:92dvh}.quickOrderTitle h2{font-size:21px}.quickForm{gap:10px}}
 .product .halfBtn{
  order:4;
  width:100%;
