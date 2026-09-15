@@ -20,59 +20,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
-
-
-
-
-
-
-\n\n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/checkout.css?v=20260914-pedir-aqui">
 <link rel="stylesheet" href="./css/responsive.css">
@@ -87,14 +34,14 @@
 <div class="nav"><div class="navin" id="nav"></div></div></header>
 <main><h1 class="sr-only">CONSUMA · Almacén y Casa de Comidas en San Luis</h1><div class="tools"><input id="search" placeholder="Buscar en la carta..." oninput="scheduleRender()" autocomplete="off" enterkeyhint="search" aria-label="Buscar productos"></div>
 <section class="polloFeature" id="pollos-horno">
-  <div class="polloFeatureHead"><span class="polloBadge">VIERNES · SÁBADO · DOMINGO · POR ENCARGO</span><h2>🔥 Pollos al horno de barro</h2><p>Sabor casero, recién salidos del horno. Elegí fritas o ensalada.</p></div>
+  <div class="polloFeatureHead"><span class="polloBadge">VIERNES · SÁBADO · DOMINGO · POR ENCARGO</span><h2>🔥 Pollos al horno de barro</h2><p>Sabor casero, recién salidos del horno. Elegí fritas o ensalada · chimichurri o limón.</p></div>
   <div class="polloMedia"><img src="./assets/pollo-horno-consuma.jpg" alt="Pollos de Consuma cocinándose en el horno" loading="lazy" decoding="async"><video controls muted playsinline preload="metadata" poster="./assets/pollo-horno-consuma.jpg"><source src="./assets/pollo-horno-consuma.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video></div>
   <div class="polloOffers">
-    <article class="polloOffer"><h3>Pollo entero</h3><div class="price">$22.000</div><p>Con fritas o ensalada.</p><button class="polloAdd" onclick="add('Pollo entero al horno de barro',22000,'Comidas al plato')">+ Agregar</button></article>
-    <article class="polloOffer"><h3>1/2 pollo</h3><div class="price">$16.000</div><p>Con fritas o ensalada.</p><button class="polloAdd" onclick="add('1/2 pollo al horno de barro',16000,'Comidas al plato')">+ Agregar</button></article>
-    <article class="polloOffer"><h3>1/4 pollo</h3><div class="price">$8.000</div><p>Con fritas o ensalada.</p><button class="polloAdd" onclick="add('1/4 pollo al horno de barro',8000,'Comidas al plato')">+ Agregar</button></article>
+    <article class="polloOffer"><h3>Pollo entero</h3><div class="price">$22.000</div><p>Elegí fritas o ensalada · chimichurri o limón.</p><button class="polloAdd" onclick="add('Pollo entero al horno de barro',22000,'Comidas al plato')">+ Agregar</button></article>
+    <article class="polloOffer"><h3>1/2 pollo</h3><div class="price">$16.000</div><p>Elegí fritas o ensalada · chimichurri o limón.</p><button class="polloAdd" onclick="add('1/2 pollo al horno de barro',16000,'Comidas al plato')">+ Agregar</button></article>
+    <article class="polloOffer"><h3>1/4 pollo</h3><div class="price">$8.000</div><p>Elegí fritas o ensalada · chimichurri o limón.</p><button class="polloAdd" onclick="add('1/4 pollo al horno de barro',8000,'Comidas al plato')">+ Agregar</button></article>
   </div>
-  <div class="polloActions"><a class="polloOrderBtn" target="_blank" rel="noopener" href="https://wa.me/542664576554?text=Hola%21%20Quiero%20encargar%20pollo%20al%20horno%20de%20barro%20%F0%9F%91%87%0A%0APedido%3A%20%0AD%C3%ADa%20%28viernes%2Fs%C3%A1bado%2Fdomingo%29%3A%20%0AGuarnici%C3%B3n%20%28fritas%20o%20ensalada%29%3A%20%0ADirecci%C3%B3n%20o%20retiro%3A%20%0AForma%20de%20pago%3A%20%0AObservaci%C3%B3n%3A">💬 Encargar por WhatsApp</a></div>
+  <div class="polloActions"><a class="polloOrderBtn" target="_blank" rel="noopener" href="https://wa.me/542664576554?text=Hola%21%20Quiero%20encargar%20pollo%20al%20horno%20de%20barro%20%F0%9F%91%87%0A%0APedido%3A%20%0AD%C3%ADa%20%28viernes%2Fs%C3%A1bado%2Fdomingo%29%3A%20%0AGuarnici%C3%B3n%20%28fritas%20o%20ensalada%29%3A%20%0AAcompa%C3%B1amiento%20%28chimichurri%20o%20lim%C3%B3n%29%3A%20%0ADirecci%C3%B3n%20o%20retiro%3A%20%0AForma%20de%20pago%3A%20%0AObservaci%C3%B3n%3A">💬 Encargar por WhatsApp</a></div>
 </section>
 <div id="content"></div></main>
 <button class="cart" aria-label="Ver pedido" onclick="openCart()">🛒 <span id="count" aria-live="polite">0</span> · Ver pedido</button>
@@ -130,34 +77,5 @@
 <div id="formError" class="formError"></div>
 <button class="checkout" onclick="sendWA()">Enviar pedido por WhatsApp</button>
 </div></div></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="./js/app.js?v=20260915-pollos" defer></script>
 </body></html>
