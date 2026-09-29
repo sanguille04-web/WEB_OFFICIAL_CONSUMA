@@ -92,7 +92,7 @@ const MEDALLON_CATEGORIES=new Set(["Hamburguesas"]);
 const PLATE_SIDES=[{name:"Puré",price:0},{name:"Papas fritas",price:0},{name:"Ensalada",price:0}];
 const CRIOLLA_CATEGORIES=new Set(["Hamburguesas","Sándwiches","Lomos"]);
 function add(name,price,cat=""){
- const customizable=cat==="Promos"||cat==="Comidas al plato"||ADDON_CATEGORIES.has(cat);
+ const customizable=cat==="Promos"||cat==="Comidas al plato"||cat==="Milanesas"||ADDON_CATEGORIES.has(cat);
  if(customizable){openModifier(name,price,cat);return}
  cart.push({name,price,mods:[],qty:1});saveCart();
 }
@@ -103,7 +103,7 @@ function openModifier(name,price,cat){
  const comboMode=name==="Combo Consuma";
  const promoMode=cat==="Promos"&&!comboMode;
  const baseSauces=cat==="Hamburguesas"?BURGER_SAUCES:STANDARD_SAUCES;
- const plateMode=cat==="Comidas al plato";
+ const plateMode=cat==="Comidas al plato"||cat==="Milanesas";
  const sauces=plateMode?PLATE_SIDES:(comboMode?COMBO_DRINKS:(promoMode?PROMO_DRINKS:(CRIOLLA_CATEGORIES.has(cat)?[...baseSauces,CEBOLLA_CARAMELIZADA_EXTRA,CRIOLLA_EXTRA]:baseSauces)));
  const hint=document.querySelector("#modifierModal .modHint");
  if(hint)hint.textContent=plateMode?"Elegí una guarnición":(comboMode?"Elegí la gaseosa de 500 ml incluida":(promoMode?"Agregá una bebida a la promo (opcional)":"Elegí aderezos, extras y potenciadores"));
