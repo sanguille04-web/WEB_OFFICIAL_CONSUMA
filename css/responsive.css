@@ -701,3 +701,51 @@ main{width:100%;max-width:100%;min-width:0}
   .nav button,.premiumQuick button{font-size:12px!important;padding:9px 11px!important}
   .product{padding:12px!important}
 }
+
+
+/* SELECTOR DE VISTA: Scroll / Libro */
+.tools{display:flex!important;align-items:center!important;gap:10px!important;flex-wrap:wrap!important}
+.tools #search{flex:1 1 280px!important;min-width:0!important}
+.viewMode{display:flex;gap:4px;padding:4px;background:#111;border:1px solid #d4af37;border-radius:14px}
+.viewMode button{min-height:42px;padding:8px 13px;border:0;border-radius:10px;background:transparent;color:#fff;font-weight:800;white-space:nowrap}
+.viewMode button.active{background:#d4af37;color:#111}
+body.bookMode #content{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:18px!important;
+ align-items:start!important;
+}
+body.bookMode #content>.menuSection{
+ margin:0!important;
+ padding:18px!important;
+ border:1px solid #d8d1bd!important;
+ border-radius:20px!important;
+ background:#fff!important;
+ box-shadow:0 7px 24px rgba(0,0,0,.08)!important;
+ min-width:0!important;
+}
+body.bookMode #content>.menuSection .grid{grid-template-columns:1fr!important}
+body.bookMode #content>.menuSection .sectionTitle{margin-top:0!important}
+@media(max-width:700px){
+ .viewMode{width:100%!important}
+ .viewMode button{flex:1 1 50%!important}
+ body.bookMode #content{
+   display:flex!important;
+   gap:12px!important;
+   overflow-x:auto!important;
+   overflow-y:hidden!important;
+   scroll-snap-type:x mandatory!important;
+   -webkit-overflow-scrolling:touch!important;
+   padding-bottom:12px!important;
+ }
+ body.bookMode #content>.menuSection{
+   flex:0 0 calc(100vw - 36px)!important;
+   scroll-snap-align:center!important;
+   max-height:calc(100dvh - 150px)!important;
+   overflow-y:auto!important;
+   -webkit-overflow-scrolling:touch!important;
+ }
+}
+@media(max-width:360px){
+ body.bookMode #content>.menuSection{flex-basis:calc(100vw - 24px)!important;padding:14px!important}
+}
