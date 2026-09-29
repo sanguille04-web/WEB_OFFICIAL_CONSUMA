@@ -83,6 +83,7 @@ function setViewMode(mode){
  document.getElementById("viewScroll")?.setAttribute("aria-pressed",String(safe==="scroll"));
  document.getElementById("viewBook")?.setAttribute("aria-pressed",String(safe==="book"));
  try{localStorage.setItem("consumaViewMode",safe)}catch(e){}
+ if(safe==="book") requestAnimationFrame(()=>document.querySelector("#content>.menuSection")?.scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"}));
 }
 function restoreViewMode(){
  let mode="scroll";try{mode=localStorage.getItem("consumaViewMode")||"scroll"}catch(e){}
@@ -90,7 +91,12 @@ function restoreViewMode(){
 }
 function scrollToCat(cat){
  const el=document.getElementById("sec-"+slug(cat));
- if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+ if(!el)return;
+ if(document.body.classList.contains("bookMode")){
+   el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});
+ }else{
+   el.scrollIntoView({behavior:"smooth",block:"start"});
+ }
 }
 
 function halfPrice(price){return Math.round(price/2)+(price>=19000?2000:1000)}
@@ -312,7 +318,9 @@ nav();render();bindModifierControls();restoreViewMode();count();tick();setInterv
   }
   function go(name){
     const el=sectionFor(name);
-    if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+    if(!el)return;
+    if(document.body.classList.contains("bookMode")) el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});
+    else el.scrollIntoView({behavior:"smooth",block:"start"});
   }
   function buildQuick(){
     if(document.querySelector(".premiumQuick")) return;
