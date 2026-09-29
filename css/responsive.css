@@ -749,3 +749,49 @@ body.bookMode #content>.menuSection .sectionTitle{margin-top:0!important}
 @media(max-width:360px){
  body.bookMode #content>.menuSection{flex-basis:calc(100vw - 24px)!important;padding:14px!important}
 }
+
+
+/* LIBRO REAL: categorías como páginas horizontales */
+body.bookMode{overflow-x:hidden!important}
+body.bookMode #content{
+  display:flex!important;
+  flex-flow:row nowrap!important;
+  width:100%!important;
+  max-width:100%!important;
+  gap:16px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scroll-snap-type:x mandatory!important;
+  scroll-behavior:smooth!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+  scrollbar-width:none!important;
+  padding:8px max(12px,env(safe-area-inset-right)) 18px max(12px,env(safe-area-inset-left))!important;
+}
+body.bookMode #content::-webkit-scrollbar{display:none!important}
+body.bookMode #content>.menuSection{
+  flex:0 0 calc(100% - 4px)!important;
+  width:calc(100% - 4px)!important;
+  max-width:none!important;
+  min-width:0!important;
+  scroll-snap-align:start!important;
+  scroll-snap-stop:always!important;
+  margin:0!important;
+}
+body.bookMode #content>.menuSection .grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+body.bookMode .nav,body.bookMode .premiumQuick{
+  scroll-behavior:smooth!important;
+}
+@media(max-width:700px){
+ body.bookMode #content{gap:10px!important;padding-left:10px!important;padding-right:10px!important}
+ body.bookMode #content>.menuSection{
+   flex-basis:calc(100vw - 20px)!important;
+   width:calc(100vw - 20px)!important;
+   max-height:none!important;
+   overflow:visible!important;
+ }
+ body.bookMode #content>.menuSection .grid{grid-template-columns:1fr!important}
+}
