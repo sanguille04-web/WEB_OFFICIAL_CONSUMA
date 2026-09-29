@@ -795,3 +795,47 @@ body.bookMode .nav,body.bookMode .premiumQuick{
  }
  body.bookMode #content>.menuSection .grid{grid-template-columns:1fr!important}
 }
+
+
+/* UI FINAL 2026-09-29: iconos + paginación horizontal real */
+.socialTop .socialBtn{
+  overflow:hidden!important;text-indent:0!important;font-size:0!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  padding:0!important;border:1px solid #ffffff2b!important;
+}
+.socialTop .socialBtn svg{width:22px!important;height:22px!important;display:block!important}
+.socialTop .waIcon{background:#19b85a!important;color:#fff!important}
+.socialTop .igIcon{background:linear-gradient(135deg,#6b4ad5,#d62976,#f58529)!important;color:#fff!important}
+.socialTop .igIcon span{font-size:13px!important;font-weight:900!important;line-height:1!important}
+.socialTop .mapsIcon{background:#fff!important;color:#2467d6!important}
+.viewMode{flex:0 0 auto!important}
+.bookPager{display:none;align-items:center;justify-content:flex-start;gap:7px;overflow-x:auto;padding:8px 12px;background:#fff;border-bottom:1px solid #ddd;scrollbar-width:none}
+.bookPager::-webkit-scrollbar{display:none}
+.bookPager.show{display:flex}
+.bookPager button{flex:0 0 42px;width:42px;height:42px;min-width:42px;min-height:42px;border-radius:50%;border:1px solid #c8a12a;background:#fff;color:#111;font-weight:900}
+.bookPager button.active{background:#d4af37;color:#111}
+body.bookMode #content{
+ display:flex!important;flex-flow:row nowrap!important;gap:0!important;
+ width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;
+ scroll-snap-type:x mandatory!important;scroll-behavior:smooth!important;-webkit-overflow-scrolling:touch!important;
+ padding:0!important;scrollbar-width:none!important;
+}
+body.bookMode #content::-webkit-scrollbar{display:none!important}
+body.bookMode #content>.menuSection{
+ flex:0 0 100%!important;width:100%!important;max-width:100%!important;
+ scroll-snap-align:start!important;scroll-snap-stop:always!important;
+ margin:0!important;padding:16px!important;border-radius:0!important;box-shadow:none!important;
+}
+@media(max-width:700px){
+ .tools{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important}
+ .viewMode{display:flex!important;align-self:stretch!important}
+ .viewMode button{min-width:64px!important;padding:6px 9px!important;font-size:12px!important}
+ .socialTop{gap:4px!important}
+ .socialTop .socialBtn{width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important}
+ body.bookMode #content>.menuSection{flex-basis:100%!important;width:100%!important;padding:12px!important}
+}
+@media(max-width:390px){
+ .tools{grid-template-columns:1fr!important}
+ .viewMode{width:100%!important}
+ .viewMode button{flex:1 1 50%!important;font-size:13px!important}
+}
