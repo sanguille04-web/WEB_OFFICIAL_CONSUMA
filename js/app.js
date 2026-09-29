@@ -89,9 +89,10 @@ function addHalfPizza(name,price){
 
 const ADDON_CATEGORIES=new Set(["Hamburguesas","Papas","Sándwiches","Lomos"]);
 const MEDALLON_CATEGORIES=new Set(["Hamburguesas"]);
+const PLATE_SIDES=[{name:"Puré",price:0},{name:"Papas fritas",price:0},{name:"Ensalada",price:0}];
 const CRIOLLA_CATEGORIES=new Set(["Hamburguesas","Sándwiches","Lomos"]);
 function add(name,price,cat=""){
- const customizable=cat==="Promos"||ADDON_CATEGORIES.has(cat);
+ const customizable=cat==="Promos"||cat==="Comidas al plato"||ADDON_CATEGORIES.has(cat);
  if(customizable){openModifier(name,price,cat);return}
  cart.push({name,price,mods:[],qty:1});saveCart();
 }
@@ -102,11 +103,12 @@ function openModifier(name,price,cat){
  const comboMode=name==="Combo Consuma";
  const promoMode=cat==="Promos"&&!comboMode;
  const baseSauces=cat==="Hamburguesas"?BURGER_SAUCES:STANDARD_SAUCES;
- const sauces=comboMode?COMBO_DRINKS:(promoMode?PROMO_DRINKS:(CRIOLLA_CATEGORIES.has(cat)?[...baseSauces,CEBOLLA_CARAMELIZADA_EXTRA,CRIOLLA_EXTRA]:baseSauces));
+ const plateMode=cat==="Comidas al plato";
+ const sauces=plateMode?PLATE_SIDES:(comboMode?COMBO_DRINKS:(promoMode?PROMO_DRINKS:(CRIOLLA_CATEGORIES.has(cat)?[...baseSauces,CEBOLLA_CARAMELIZADA_EXTRA,CRIOLLA_EXTRA]:baseSauces)));
  const hint=document.querySelector("#modifierModal .modHint");
- if(hint)hint.textContent=comboMode?"Elegí la gaseosa de 500 ml incluida":(promoMode?"Agregá una bebida a la promo (opcional)":"Elegí aderezos, extras y potenciadores");
- const inputType=comboMode?"radio":"checkbox";
- const inputGroup=comboMode?' name="comboDrink"':"";
+ if(hint)hint.textContent=plateMode?"Elegí una guarnición":(comboMode?"Elegí la gaseosa de 500 ml incluida":(promoMode?"Agregá una bebida a la promo (opcional)":"Elegí aderezos, extras y potenciadores"));
+ const inputType=(comboMode||plateMode)?"radio":"checkbox";
+ const inputGroup=comboMode?' name="comboDrink"':(plateMode?' name="plateSide"':"");
  document.getElementById("sauceGrid").innerHTML=sauces.map((x,i)=>`<label class="sauceOpt"><input type="${inputType}"${inputGroup} value="${x.name}" data-price="${x.price}" onchange="toggleSauce(this)" ${i===0?"checked":""}><span>${x.name}${x.price?` · +${money(x.price)}`:""}${x.detail?`<small style="display:block;margin-top:4px;opacity:.75;font-size:.78rem">${x.detail}</small>`:""}</span></label>`).join("");
  document.getElementById("medallonRow").style.display=MEDALLON_CATEGORIES.has(cat)?"flex":"none";
  if(MEDALLON_CATEGORIES.has(cat)){
