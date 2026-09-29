@@ -310,7 +310,7 @@ function bindModifierControls(){
 }
 
 cart=cart.map(x=>({...x,qty:x.qty||1,mods:x.mods||[]}));
-nav();render();bindModifierControls();restoreViewMode();count();tick();setInterval(tick,1000);
+nav();render();bindModifierControls();count();tick();setInterval(tick,1000);
 
 
 /* ---- original runtime block ---- */
