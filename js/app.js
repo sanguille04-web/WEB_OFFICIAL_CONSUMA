@@ -82,8 +82,9 @@ function setViewMode(mode){
  document.getElementById("viewBook")?.classList.toggle("active",safe==="book");
  document.getElementById("viewScroll")?.setAttribute("aria-pressed",String(safe==="scroll"));
  document.getElementById("viewBook")?.setAttribute("aria-pressed",String(safe==="book"));
+ document.getElementById("bookPager")?.classList.toggle("show",safe==="book");
  try{localStorage.setItem("consumaViewMode",safe)}catch(e){}
- if(safe==="book") requestAnimationFrame(()=>document.querySelector("#content>.menuSection")?.scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"}));
+ if(safe==="book") requestAnimationFrame(()=>goBookPage(0));
 }
 function restoreViewMode(){
  let mode="scroll";try{mode=localStorage.getItem("consumaViewMode")||"scroll"}catch(e){}
@@ -93,10 +94,9 @@ function scrollToCat(cat){
  const el=document.getElementById("sec-"+slug(cat));
  if(!el)return;
  if(document.body.classList.contains("bookMode")){
-   el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});
- }else{
-   el.scrollIntoView({behavior:"smooth",block:"start"});
- }
+   const pages=[...document.querySelectorAll("#content>.menuSection")];
+   const i=pages.indexOf(el); if(i>=0)goBookPage(i);
+ }else el.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function halfPrice(price){return Math.round(price/2)+(price>=19000?2000:1000)}
@@ -189,7 +189,20 @@ function render(){
    blocks.push(`<section id="sec-${slug(cat)}" class="menuSection"><div class="sectionTitle"><h2>${cat}</h2>${quickWhatsAppButton(cat)}</div><div class="goldline"></div><div class="grid">${a.map(x=>`<article class="card product"><h3>${x.name}</h3><div class="desc">${x.desc||""}</div><div class="row">${x.price!==null?`<span class="price">${money(x.price)}</span>${x.cat==="Pizzas"&&x.name!=="Pizza al molde · Muzzarella"?`<button class="halfBtn" onclick="addHalfPizza('${x.name.replaceAll("'","\\'")}',${x.price})">½ · ${money(halfPrice(x.price))}</button>`:""}<button class="add" aria-label="Agregar al pedido" onclick="add('${x.name.replaceAll("'","\\'")}',${x.price},'${x.cat.replaceAll("'","\\'")}')">+</button>`:`<span class="soon">CONSULTAR</span>`}</div></article>`).join("")}</div></section>`);
  }
  document.getElementById("content").innerHTML=blocks.join("");
+ buildBookPager();
  bindAddButtons();
+}
+function buildBookPager(){
+ const pager=document.getElementById("bookPager"); if(!pager)return;
+ const pages=[...document.querySelectorAll("#content>.menuSection")];
+ pager.innerHTML=pages.map((p,i)=>`<button type="button" data-page="${i}" onclick="goBookPage(${i})" aria-label="Página ${i+1}">${i+1}</button>`).join("");
+ pager.classList.toggle("show",document.body.classList.contains("bookMode"));
+}
+function goBookPage(i){
+ const pages=[...document.querySelectorAll("#content>.menuSection")]; const page=pages[i]; if(!page)return;
+ const content=document.getElementById("content");
+ content.scrollTo({left:page.offsetLeft-content.offsetLeft,behavior:"smooth"});
+ document.querySelectorAll("#bookPager button").forEach((b,n)=>b.classList.toggle("active",n===i));
 }
 function openCart(){
  const saucesNote=document.querySelector("#modal .sauces");
