@@ -75,6 +75,19 @@ function nav(){
  document.getElementById("nav").innerHTML=CATS.map(c=>`<button data-cat="${c}" onclick="scrollToCat('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
 }
 function slug(x){return x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9]+/g,"-").toLowerCase();}
+function setViewMode(mode){
+ const safe=mode==="book"?"book":"scroll";
+ document.body.classList.toggle("bookMode",safe==="book");
+ document.getElementById("viewScroll")?.classList.toggle("active",safe==="scroll");
+ document.getElementById("viewBook")?.classList.toggle("active",safe==="book");
+ document.getElementById("viewScroll")?.setAttribute("aria-pressed",String(safe==="scroll"));
+ document.getElementById("viewBook")?.setAttribute("aria-pressed",String(safe==="book"));
+ try{localStorage.setItem("consumaViewMode",safe)}catch(e){}
+}
+function restoreViewMode(){
+ let mode="scroll";try{mode=localStorage.getItem("consumaViewMode")||"scroll"}catch(e){}
+ setViewMode(mode);
+}
 function scrollToCat(cat){
  const el=document.getElementById("sec-"+slug(cat));
  if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
@@ -278,7 +291,7 @@ function bindModifierControls(){
 }
 
 cart=cart.map(x=>({...x,qty:x.qty||1,mods:x.mods||[]}));
-nav();render();bindModifierControls();count();tick();setInterval(tick,1000);
+nav();render();bindModifierControls();restoreViewMode();count();tick();setInterval(tick,1000);
 
 
 /* ---- original runtime block ---- */
