@@ -596,3 +596,108 @@ main section > h2::after,
     font-size:38px!important;
   }
 }
+
+
+/* COMPATIBILIDAD MÓVIL 2026-09-29
+   iOS Safari + Android/Chrome/WebView: evita solapamientos y mantiene acciones accesibles. */
+html,body{width:100%;max-width:100%;margin:0}
+main{width:100%;max-width:100%;min-width:0}
+.navin,.premiumQuick{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-width:none;
+}
+.navin::-webkit-scrollbar,.premiumQuick::-webkit-scrollbar{display:none}
+.navin button,.premiumQuick button{flex:0 0 auto!important;white-space:nowrap!important}
+.sectionTitle{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  flex-wrap:wrap!important;
+  min-width:0!important;
+}
+.sectionTitle h2{min-width:0!important;overflow-wrap:anywhere!important}
+.quickOrder{max-width:100%!important;min-height:44px!important;white-space:normal!important}
+.product .row,.promo .row{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  min-width:0!important;
+}
+.product .price,.promo .price{flex:0 1 auto!important;min-width:0!important}
+.add{flex:0 0 auto!important}
+.modal{padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))!important}
+.sheet{
+  width:min(680px,100%)!important;
+  max-width:100%!important;
+  max-height:calc(100dvh - 20px)!important;
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+  padding-bottom:max(20px,env(safe-area-inset-bottom))!important;
+}
+.sauceGrid,.zoneGrid,.form2{min-width:0!important}
+.sauceOpt,.zoneBtn,label,input,select,textarea{min-width:0!important;max-width:100%!important}
+.sauceOpt{overflow-wrap:anywhere!important}
+.checkout{
+  position:sticky!important;
+  bottom:0!important;
+  z-index:5!important;
+  width:100%!important;
+  min-height:52px!important;
+  margin-top:12px!important;
+}
+.cart{
+  max-width:calc(100vw - 24px - env(safe-area-inset-left) - env(safe-area-inset-right))!important;
+  right:max(12px,env(safe-area-inset-right))!important;
+  bottom:max(12px,env(safe-area-inset-bottom))!important;
+  white-space:nowrap!important;
+}
+@supports not (height:100dvh){
+  #modifierModal,.modal{height:100vh!important}
+  #modifierModal .sheet,.sheet{max-height:calc(100vh - 20px)!important}
+}
+@media(max-width:700px){
+  main{padding-left:12px!important;padding-right:12px!important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .product{padding:14px!important;min-width:0!important}
+  .product .row{flex-wrap:wrap!important}
+  .product .price{font-size:clamp(18px,5vw,22px)!important}
+  .product .add{margin-left:auto!important}
+  .sectionTitle{align-items:flex-start!important}
+  .sectionTitle .quickOrder{width:100%!important}
+  .sauceGrid,.zoneGrid,.form2{grid-template-columns:1fr 1fr!important}
+  #modal .sheet,#modifierModal .sheet{
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    top:auto!important;
+    transform:none!important;
+    width:100%!important;
+    max-width:100%!important;
+    max-height:calc(100dvh - max(8px,env(safe-area-inset-top)))!important;
+    border-radius:20px 20px 0 0!important;
+  }
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:1fr!important}
+  .sauceGrid,.zoneGrid,.form2{grid-template-columns:1fr!important}
+  .product h3{font-size:17px!important;line-height:1.25!important}
+  .product .row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important}
+  .product .halfBtn{grid-column:1/-1!important;width:100%!important}
+  .product .add{grid-column:2!important;grid-row:1!important}
+  .modal{padding:0!important}
+  .sheet{padding-left:16px!important;padding-right:16px!important}
+}
+@media(max-width:360px){
+  main{padding-left:8px!important;padding-right:8px!important}
+  .brand{font-size:16px!important}
+  .socialBtn{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}
+  .nav button,.premiumQuick button{font-size:12px!important;padding:9px 11px!important}
+  .product{padding:12px!important}
+}
