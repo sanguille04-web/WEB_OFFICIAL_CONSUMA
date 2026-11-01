@@ -105,7 +105,7 @@ function openModifier(name,price,cat){
  const promoMode=cat==="Promos"&&!comboMode;
  const baseSauces=cat==="Hamburguesas"?BURGER_SAUCES:STANDARD_SAUCES;
  const plateMode=["Platos","Milanesas","Pollo al horno de barro"].includes(cat);
- const categorySauces=["Hamburguesas","Sándwiches","Lomos"].includes(cat)?[...baseSauces,{name:"Picante",price:800}]:baseSauces;
+ const categorySauces=["Hamburguesas","Sándwiches","Lomos"].includes(cat)?[...baseSauces,{name:"Picante de la casa",price:800}]:baseSauces;
  const sauces=plateMode?PLATE_SIDES:(comboMode?COMBO_DRINKS:(promoMode?PROMO_DRINKS:(CRIOLLA_CATEGORIES.has(cat)?[...categorySauces,CEBOLLA_CARAMELIZADA_EXTRA,CRIOLLA_EXTRA]:categorySauces)));
  const hint=document.querySelector("#modifierModal .modHint");
  if(hint)hint.textContent=plateMode?"Elegí una guarnición":(comboMode?"Elegí la gaseosa de 500 ml incluida":(promoMode?"Agregá una bebida a la promo (opcional)":"Elegí aderezos, extras y potenciadores"));
